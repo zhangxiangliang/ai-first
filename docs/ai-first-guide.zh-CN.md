@@ -35,13 +35,13 @@
 创建新 workspace：
 
 ```sh
-./scripts/create-workspace.sh admin
+./scripts/create-workspace.sh user-management
 ```
 
 它会生成：
 
 ```text
-workspaces/admin/
+workspaces/user-management/
 ├── README.md
 ├── raw-input/
 ├── discovery/
@@ -96,6 +96,36 @@ raw-input -> discovery -> context -> requirements -> tech-spec -> implementation
 | `review/` | 验收结果、问题、最终决定 |
 
 每个阶段都可以单独使用。
+
+## 命名
+
+名称应该让人不用打开文件也能知道在做什么。
+
+- Workspace 名称要描述项目、模块、功能或目标。
+- 不要使用 `request`、`task`、`notes`、`misc`、`temp` 这类泛名。
+- 同一个事项在不同阶段复用同一个 topic slug。
+
+示例：
+
+```text
+workspaces/user-management/
+├── raw-input/create-user-table.md
+├── requirements/create-user-table.md
+├── tech-spec/create-user-table.md
+├── implementation/create-user-table.md
+└── review/create-user-table.md
+```
+
+## 更新已有项目
+
+如果一个项目是基于旧版 scaffold 创建的，可以从新版 scaffold checkout 更新结构：
+
+```sh
+./scripts/scaffold.sh update --source ../project-scaffold-latest --dry-run
+./scripts/scaffold.sh update --source ../project-scaffold-latest
+```
+
+这个命令会补齐缺失的 scaffold 管理文件；相同文件不处理；如果本地文件和新版不同，会把候选更新写到 `.scaffold-updates/<timestamp>/`。默认不会覆盖用户自己的 workspaces。
 
 ## Handoff
 
@@ -185,7 +215,7 @@ workspace 文档可以包含：
 ### Create Workspace
 
 ```sh
-./scripts/create-workspace.sh admin
+./scripts/create-workspace.sh user-management
 ```
 
 从 `templates/workspace/` 创建 workspace。

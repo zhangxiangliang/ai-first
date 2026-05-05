@@ -50,8 +50,10 @@ raw-input -> discovery -> context -> requirements -> tech-spec -> implementation
 创建 workspace：
 
 ```sh
-./scripts/create-workspace.sh admin
+./scripts/create-workspace.sh user-management
 ```
+
+名称要用有意义的 kebab-case。相同事项在不同阶段复用同一个 topic slug，例如 `raw-input/create-user-table.md`、`requirements/create-user-table.md`、`tech-spec/create-user-table.md`。
 
 然后更新生成的 workspace README，尤其是：
 
@@ -71,6 +73,13 @@ raw-input -> discovery -> context -> requirements -> tech-spec -> implementation
 
 ```sh
 ./scripts/update-ingest-queue.sh
+```
+
+从更新版本的 scaffold checkout 升级已有项目，并避免覆盖本地内容：
+
+```sh
+./scripts/scaffold.sh update --source ../project-scaffold-latest --dry-run
+./scripts/scaffold.sh update --source ../project-scaffold-latest
 ```
 
 ## 文档

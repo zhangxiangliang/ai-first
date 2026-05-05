@@ -20,9 +20,9 @@ Review verifies that implementation satisfies the approved requirements and tech
 
 ## Reviewed Documents
 
-- ../requirements/<file>
-- ../tech-spec/<file>
-- ../implementation/<file>
+- ../requirements/<topic-slug>.md
+- ../tech-spec/<topic-slug>.md
+- ../implementation/<topic-slug>.md
 
 ## Acceptance Criteria
 

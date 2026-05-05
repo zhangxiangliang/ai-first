@@ -22,7 +22,7 @@ Use discovery to understand the problem before writing requirements.
 
 | Source | Notes |
 |--------|-------|
-| ../raw-input/<file> | |
+| ../raw-input/<topic-slug>.md | |
 
 ## Problem Summary
 

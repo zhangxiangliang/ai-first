@@ -3,7 +3,8 @@ set -euo pipefail
 
 usage() {
   printf 'Usage: %s <workspace-name>\n' "$0"
-  printf 'Example: %s admin\n' "$0"
+  printf 'Example: %s user-management\n' "$0"
+  printf 'Use a meaningful kebab-case name, not request/task/notes.\n'
 }
 
 if [ "${1:-}" = "" ]; then
@@ -16,6 +17,13 @@ name="$1"
 case "$name" in
   *[!a-z0-9-]* | -* | *-)
     printf 'Workspace name must be kebab-case: lowercase letters, numbers, and hyphens only.\n' >&2
+    exit 1
+    ;;
+esac
+
+case "$name" in
+  request|requests|task|tasks|workspace|workspaces|note|notes|misc|temp|tmp)
+    printf 'Workspace name is too generic. Use a meaningful project, module, feature, or outcome name.\n' >&2
     exit 1
     ;;
 esac
@@ -92,13 +100,13 @@ Short description of the module, feature, or project.
 
 ## Key Documents
 
-- [raw-input/](raw-input/)
-- [discovery/](discovery/)
-- [context/](context/)
-- [requirements/](requirements/)
-- [tech-spec/](tech-spec/)
-- [implementation/](implementation/)
-- [review/](review/)
+- [raw-input/<topic-slug>.md](raw-input/<topic-slug>.md)
+- [discovery/<topic-slug>.md](discovery/<topic-slug>.md)
+- [context/<topic-slug>.md](context/<topic-slug>.md)
+- [requirements/<topic-slug>.md](requirements/<topic-slug>.md)
+- [tech-spec/<topic-slug>.md](tech-spec/<topic-slug>.md)
+- [implementation/<topic-slug>.md](implementation/<topic-slug>.md)
+- [review/<topic-slug>.md](review/<topic-slug>.md)
 
 ## Related Workspaces
 

@@ -18,6 +18,12 @@ Use [../templates/workspace/](../templates/workspace/) when creating a new works
 
 The full phase structure is the default for substantial or ambiguous work. Each phase can also be used independently. Clear small changes, bug fixes, operational tasks, user-directed implementation tasks, standalone research, or review-only work may start directly in the relevant phase. Record the phase scope or shortcut reason in the active document.
 
+## Naming
+
+Use meaningful kebab-case workspace names. For one work item, reuse the same topic slug across phases, such as `raw-input/create-user-table.md`, `requirements/create-user-table.md`, and `tech-spec/create-user-table.md`.
+
+Do not use generic workspace or document names such as `request`, `task`, `notes`, `request.md`, or `notes.md`.
+
 ## Knowledge Sink
 
 Reusable knowledge produced during projects sinks to `wiki/`.

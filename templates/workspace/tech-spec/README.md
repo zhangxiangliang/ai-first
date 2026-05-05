@@ -20,7 +20,7 @@ Tech specs translate approved requirements into an implementation design.
 
 ## Requirement Links
 
-- ../requirements/<file>
+- ../requirements/<topic-slug>.md
 
 ## Summary
 

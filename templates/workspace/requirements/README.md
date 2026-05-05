@@ -40,7 +40,7 @@ Use workspace-scoped ticket IDs to avoid collisions across workspaces.
 
 | Ticket ID | Source | Summary | Status |
 |-----------|--------|---------|--------|
-| `<WORKSPACE-PREFIX>-TICKET-001` | ../raw-input/<file> | [Short summary] | Open |
+| `<WORKSPACE-PREFIX>-TICKET-001` | ../raw-input/<topic-slug>.md | [Short summary] | Open |
 
 ## Functional Requirements
 
@@ -80,7 +80,7 @@ Use workspace-scoped ticket IDs to avoid collisions across workspaces.
 
 | Requirement ID | Ticket ID | Source | Notes |
 |----------------|-----------|--------|-------|
-| `<WORKSPACE-PREFIX>-REQ-001` | `<WORKSPACE-PREFIX>-TICKET-001` | ../raw-input/<file> | |
+| `<WORKSPACE-PREFIX>-REQ-001` | `<WORKSPACE-PREFIX>-TICKET-001` | ../raw-input/<topic-slug>.md | |
 
 ## Approval
 

@@ -494,12 +494,39 @@ Recommended format:
   - How to resolve: [Who or what source can answer it]
 ```
 
-## Naming
+## Workspace And Document Naming
+
+Names must make the work findable without opening the file.
 
 - Persistent files are written in English.
 - File names use kebab-case.
-- Workspace names use kebab-case.
-- Prefer specific file names such as `admin-role-requirements.md` over vague names such as `notes.md`.
+- Workspace names use kebab-case and describe the project, module, feature, or outcome.
+- Do not use vague workspace names such as `request`, `task`, `workspace`, `notes`, `misc`, or `temp`.
+- Prefer outcome-oriented workspace names such as `create-user-table`, `claim-sync-retry`, or `admin-role-access`.
+- Within a workspace, choose a stable topic slug for each request, ticket, feature, or investigation.
+- Reuse that same topic slug across phase documents for the same work item.
+- Do not create vague phase files such as `request.md`, `requirements.md`, `notes.md`, `draft.md`, `spec.md`, `implementation.md`, or `review.md`.
+- Prefer specific file names such as `create-user-table.md` or `admin-role-access.md`.
+
+Example:
+
+```text
+workspaces/user-management/
+├── raw-input/create-user-table.md
+├── discovery/create-user-table.md
+├── requirements/create-user-table.md
+├── tech-spec/create-user-table.md
+├── implementation/create-user-table.md
+└── review/create-user-table.md
+```
+
+If a phase produces multiple documents for the same topic, keep the topic slug first and add a specific suffix:
+
+```text
+requirements/create-user-table.md
+requirements/create-user-table-permissions.md
+tech-spec/create-user-table-migration.md
+```
 
 ## Scaffold Health Checks
 
@@ -512,6 +539,23 @@ Run the scaffold lint script after structural changes:
 The lint script checks required root files, template coverage, workspace phase README files, wiki index coverage, and `git diff --check`.
 
 Wiki index coverage includes nested pages under topic directories.
+
+## Scaffold Updates
+
+Existing projects can update their scaffold structure from a newer scaffold checkout:
+
+```sh
+./scripts/scaffold.sh update --source ../project-scaffold-latest
+```
+
+The update workflow must be non-destructive by default:
+
+- copy missing managed scaffold files
+- leave identical files unchanged
+- write candidate updates under `.scaffold-updates/<timestamp>/` when local files differ
+- do not overwrite user workspaces
+- do not copy reference workspaces such as `workspaces/foundation/` or `workspaces/scaffold-maintenance/`
+- require an explicit force option before replacing local scaffold files
 
 ## Review Gates
 

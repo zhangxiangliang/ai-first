@@ -35,13 +35,13 @@ Do not read every file by default. Start from the active workspace and follow li
 Create a new workspace:
 
 ```sh
-./scripts/create-workspace.sh admin
+./scripts/create-workspace.sh user-management
 ```
 
 This creates:
 
 ```text
-workspaces/admin/
+workspaces/user-management/
 ├── README.md
 ├── raw-input/
 ├── discovery/
@@ -96,6 +96,36 @@ If a workflow would be too heavy, record a `Phase Shortcut` or `Phase Scope` ins
 | `review/` | Acceptance results, issues, final decision |
 
 Each phase can stand alone when that is the right fit.
+
+## Naming
+
+Use names that make work findable without opening files.
+
+- Workspace names should describe the project, module, feature, or outcome.
+- Do not use generic names such as `request`, `task`, `notes`, `misc`, or `temp`.
+- For one work item, reuse the same topic slug across phases.
+
+Example:
+
+```text
+workspaces/user-management/
+├── raw-input/create-user-table.md
+├── requirements/create-user-table.md
+├── tech-spec/create-user-table.md
+├── implementation/create-user-table.md
+└── review/create-user-table.md
+```
+
+## Update An Existing Project
+
+When a project was created from an older scaffold, update it from a newer scaffold checkout:
+
+```sh
+./scripts/scaffold.sh update --source ../project-scaffold-latest --dry-run
+./scripts/scaffold.sh update --source ../project-scaffold-latest
+```
+
+The update command copies missing managed scaffold files, leaves identical files alone, and writes candidate updates under `.scaffold-updates/<timestamp>/` when a local file differs. It does not overwrite user workspaces by default.
 
 ## Handoff
 
@@ -185,7 +215,7 @@ To complete an ingest:
 ### Create Workspace
 
 ```sh
-./scripts/create-workspace.sh admin
+./scripts/create-workspace.sh user-management
 ```
 
 Creates a workspace from `templates/workspace/`.

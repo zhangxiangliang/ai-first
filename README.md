@@ -50,8 +50,10 @@ Examples:
 Create a workspace:
 
 ```sh
-./scripts/create-workspace.sh admin
+./scripts/create-workspace.sh user-management
 ```
+
+Use meaningful kebab-case names. Keep the same topic slug across phase documents, for example `raw-input/create-user-table.md`, `requirements/create-user-table.md`, and `tech-spec/create-user-table.md`.
 
 Update the generated workspace README, especially:
 
@@ -71,6 +73,13 @@ Generate the wiki ingest queue:
 
 ```sh
 ./scripts/update-ingest-queue.sh
+```
+
+Update an existing project from a newer scaffold checkout without overwriting local work:
+
+```sh
+./scripts/scaffold.sh update --source ../project-scaffold-latest --dry-run
+./scripts/scaffold.sh update --source ../project-scaffold-latest
 ```
 
 ## Documentation

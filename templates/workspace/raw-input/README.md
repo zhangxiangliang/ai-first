@@ -12,6 +12,17 @@ Do not rewrite, summarize, or "clean up" raw source content inside this folder. 
 - screenshot-<topic>.png
 - external-doc-<topic>.md
 
+For request-driven work, use the same topic slug that later phase documents will use. For example:
+
+```text
+raw-input/create-user-table.md
+requirements/create-user-table.md
+tech-spec/create-user-table.md
+implementation/create-user-table.md
+```
+
+Do not name raw inputs `request.md`, `notes.md`, or `input.md`.
+
 ## Raw Input Wrapper
 
 ```md

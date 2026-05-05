@@ -21,6 +21,8 @@ project-root/
 - `wiki/` stores reusable cross-project knowledge
 - `templates/` stores reusable scaffolding for new workspaces and phase documents
 - All persistent files are in English and use kebab-case file names
+- Workspace names must be meaningful project, module, feature, or outcome names, not generic placeholders
+- For one work item, reuse the same topic slug across workspace phase documents, such as `raw-input/create-user-table.md` and `requirements/create-user-table.md`
 
 ## Reuse Intent
 

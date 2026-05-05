@@ -13,7 +13,7 @@ Implementation tracks execution after the tech spec is approved.
 
 ## Tech Spec
 
-- ../tech-spec/<file>
+- ../tech-spec/<topic-slug>.md
 
 ## Phase Shortcut
 
