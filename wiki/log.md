@@ -2,6 +2,25 @@
 
 > Chronological record of wiki operations.
 
+## [2026-05-05] docs | Added LLM Wiki attribution
+
+- Added original gist attribution to `LLM-WIKI.md`
+- Updated public README references to note the upstream source
+
+## [2026-05-05] docs | Added Chinese public docs
+
+- Added `README.zh-CN.md`
+- Added `docs/ai-first-guide.zh-CN.md`
+- Linked English and Chinese documentation together
+
+## [2026-05-05] docs | Added open source readiness docs
+
+- Reworked README for public usage as AI Workspace Scaffold
+- Added license, contribution, and security docs
+- Kept GitHub issue and PR templates out of the minimal open source baseline
+- Added `docs/ai-first-guide.md` onboarding guide
+- Added `scaffold/open-source-readiness.md`
+
 ## [2026-05-05] ingest | Added lightweight workflow usability rules
 
 - Added workspace handoff guidance to `workflow/ai-first-development.md`

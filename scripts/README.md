@@ -38,7 +38,6 @@ This checks required root files, workspace phase README files, template coverage
 
 ## Update Ingest Queue
 
-Generate the wiki ingest queue from workspace markers:
 Generate the wiki ingest queue from visible workspace sections:
 
 ```sh

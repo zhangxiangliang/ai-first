@@ -25,3 +25,4 @@
 
 - [scaffold/scaffold-health-checks.md](scaffold/scaffold-health-checks.md) — Structural linting and limits for scaffold health checks
 - [scaffold/scaffold-maintenance.md](scaffold/scaffold-maintenance.md) — Persistent workspace and self-bootstrapping pattern for maintaining the scaffold
+- [scaffold/open-source-readiness.md](scaffold/open-source-readiness.md) — Public repository readiness checklist and naming guidance
