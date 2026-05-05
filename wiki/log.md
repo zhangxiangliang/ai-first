@@ -2,6 +2,13 @@
 
 > Chronological record of wiki operations.
 
+## [2026-05-05] scaffold | Improved workspace templates and lint checks
+
+- Split copyable phase document templates into `templates/documents/` while keeping phase README files as directory explanations.
+- Updated scaffold create behavior to accept an optional first topic slug and generate starter `raw-input`, `requirements`, and `tech-spec` documents.
+- Expanded scaffold lint coverage to warn about phase topic slug drift and to validate `wiki/index.md` link targets.
+- Added clearer missing CLI errors to the Codex and Claude launch helpers.
+
 ## [2026-05-05] scaffold | Consolidated scaffold CLI
 
 - Consolidated scaffold operations under `scripts/scaffold.sh`.

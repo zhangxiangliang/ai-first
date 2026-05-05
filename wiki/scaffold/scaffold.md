@@ -32,9 +32,12 @@ Use `scripts/scaffold.sh` as the single scaffold command:
 
 ```sh
 ./scripts/scaffold.sh create <workspace-name>
+./scripts/scaffold.sh create <workspace-name> <topic-slug>
 ./scripts/scaffold.sh lint
 ./scripts/scaffold.sh ingest
 ```
+
+When a topic slug is provided, `create` also generates starter documents for `raw-input/`, `requirements/`, and `tech-spec/`.
 
 ## Self-Bootstrapping Pattern
 
@@ -64,5 +67,6 @@ If a maintenance change affects how agents should behave, update `WIKI-SCHEMA.md
 - The wiki should use topic directories instead of a single flat namespace.
 - `scaffold` is the persistent workspace for evolving the scaffold.
 - `scripts/scaffold.sh` is the primary scaffold CLI entry point.
+- `create` accepts an optional first topic slug to avoid generic phase document names.
 - Scaffold changes should be self-bootstrapped through workspace documents when useful.
 - Durable conclusions from scaffold work should be ingested into the wiki.

@@ -15,7 +15,7 @@ This repository is a coordination layer.
 | `workspaces/` | Active project, module, or feature work |
 | `wiki/` | Stable reusable knowledge |
 | `repos/` | Implementation repositories, usually linked as git submodules |
-| `templates/` | Reusable workspace document templates |
+| `templates/` | Workspace scaffolding and reusable document templates |
 | `scripts/` | Scaffold CLI |
 
 ## Start Here
@@ -38,6 +38,12 @@ Create a new workspace:
 ./scripts/scaffold.sh create user-management
 ```
 
+Optionally create the first topic documents at the same time:
+
+```sh
+./scripts/scaffold.sh create user-management create-user-table
+```
+
 This creates:
 
 ```text
@@ -51,6 +57,8 @@ workspaces/user-management/
 ├── implementation/
 └── review/
 ```
+
+With a topic slug, it also creates starter documents in `raw-input/`, `requirements/`, and `tech-spec/`.
 
 After creation, update the workspace `README.md`, especially:
 
@@ -207,7 +215,7 @@ To complete an ingest:
 ./scripts/scaffold.sh create user-management
 ```
 
-Creates a workspace from `templates/workspace/`.
+Creates a workspace from `templates/workspace/`. Add an optional topic slug to create starter documents from `templates/documents/`.
 
 ### Lint Scaffold
 

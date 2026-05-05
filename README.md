@@ -15,7 +15,7 @@ AI Workspace Scaffold gives that work a stable shape:
 - `workspaces/` for active project, feature, or module work
 - `wiki/` for persistent reusable knowledge
 - `repos/` for implementation repositories, usually linked as git submodules
-- `templates/` for repeatable workspace documents
+- `templates/` for workspace scaffolding and reusable document templates
 - `scripts/` for the scaffold CLI
 
 ## Core Idea
@@ -52,6 +52,14 @@ Create a workspace:
 ```sh
 ./scripts/scaffold.sh create user-management
 ```
+
+Optionally create the first topic documents at the same time:
+
+```sh
+./scripts/scaffold.sh create user-management create-user-table
+```
+
+This creates starter documents in `raw-input/`, `requirements/`, and `tech-spec/` using the same topic slug.
 
 Use meaningful kebab-case names. Keep the same topic slug across phase documents, for example `raw-input/create-user-table.md`, `requirements/create-user-table.md`, and `tech-spec/create-user-table.md`.
 

@@ -15,7 +15,7 @@ AI Workspace Scaffold 给这些工作一个稳定结构：
 - `workspaces/`：当前项目、功能或模块的工作区
 - `wiki/`：长期可复用知识
 - `repos/`：实现代码仓库，通常通过 git submodule 接入
-- `templates/`：可复用的 workspace 文档模板
+- `templates/`：workspace 脚手架和可复用文档模板
 - `scripts/`：脚手架 CLI
 
 ## 核心思路
@@ -52,6 +52,14 @@ raw-input -> discovery -> context -> requirements -> tech-spec -> implementation
 ```sh
 ./scripts/scaffold.sh create user-management
 ```
+
+也可以同时创建第一个 topic 文档：
+
+```sh
+./scripts/scaffold.sh create user-management create-user-table
+```
+
+这会使用同一个 topic slug 在 `raw-input/`、`requirements/`、`tech-spec/` 中生成 starter 文档。
 
 名称要用有意义的 kebab-case。相同事项在不同阶段复用同一个 topic slug，例如 `raw-input/create-user-table.md`、`requirements/create-user-table.md`、`tech-spec/create-user-table.md`。
 

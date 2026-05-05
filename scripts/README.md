@@ -12,6 +12,12 @@ Create a new AI-first workspace from the reusable template:
 ./scripts/scaffold.sh create user-management
 ```
 
+Optionally provide the first topic slug:
+
+```sh
+./scripts/scaffold.sh create user-management create-user-table
+```
+
 This creates:
 
 ```text
@@ -24,6 +30,14 @@ workspaces/user-management/
 ├── tech-spec/
 ├── implementation/
 └── review/
+```
+
+When a topic slug is provided, this also creates:
+
+```text
+workspaces/user-management/raw-input/create-user-table.md
+workspaces/user-management/requirements/create-user-table.md
+workspaces/user-management/tech-spec/create-user-table.md
 ```
 
 After creation, update the workspace root `README.md` and capture original source materials in `raw-input/`.
@@ -45,7 +59,7 @@ Run a structural health check:
 ./scripts/scaffold.sh lint
 ```
 
-This checks required root files, executable scaffold scripts, workspace phase README files, template coverage, workspace root README placeholders, wiki index coverage, ignored local noise files, and `git diff --check`.
+This checks required root files, executable scaffold scripts, workspace phase README files, document template coverage, workspace root README placeholders, wiki index coverage in both directions, phase document naming warnings, ignored local noise files, and `git diff --check`.
 
 ## Generate Ingest Queue
 

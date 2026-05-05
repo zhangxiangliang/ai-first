@@ -27,3 +27,7 @@ workspaces/<workspace-name>/
 The workspace root README is generated from [../workspace-root.md](../workspace-root.md).
 
 Keep root README changes in that file so generated workspaces and template documentation do not drift apart.
+
+## Phase Document Templates
+
+Phase directory README files explain what belongs in each directory. Copyable document templates live in [../documents/](../documents/).

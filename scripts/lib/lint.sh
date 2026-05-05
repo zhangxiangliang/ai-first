@@ -56,6 +56,93 @@ lint_scaffold() {
     done
   }
 
+  phase_doc_stems() {
+    local phase_dir="$1"
+    local doc=""
+    local base=""
+
+    find "$phase_dir" -maxdepth 1 -type f -name '*.md' | sort | while IFS= read -r doc; do
+      base="$(basename "$doc")"
+      [ "$base" = "README.md" ] && continue
+      printf '%s\n' "${base%.*}"
+    done
+  }
+
+  has_shared_stem() {
+    local left="$1"
+    local right="$2"
+    local stem=""
+
+    while IFS= read -r stem; do
+      [ "$stem" != "" ] || continue
+      if printf '%s\n' "$right" | grep -Fxq "$stem"; then
+        return 0
+      fi
+    done <<EOF
+$left
+EOF
+
+    return 1
+  }
+
+  warn_phase_slug_mismatch() {
+    local workspace_path="$1"
+    local workspace_name="$2"
+    local phases=(raw-input discovery context requirements tech-spec implementation review)
+    local left_index=0
+    local right_index=0
+    local left_phase=""
+    local right_phase=""
+    local left_stems=""
+    local right_stems=""
+    local left_count=0
+    local right_count=0
+    local left_summary=""
+    local right_summary=""
+
+    for ((left_index = 0; left_index < ${#phases[@]}; left_index++)); do
+      left_phase="${phases[$left_index]}"
+      [ -d "$workspace_path/$left_phase" ] || continue
+      left_stems="$(phase_doc_stems "$workspace_path/$left_phase")"
+      [ "$left_stems" != "" ] || continue
+      left_count="$(printf '%s\n' "$left_stems" | sed '/^$/d' | wc -l | tr -d ' ')"
+      [ "$left_count" -eq 1 ] || continue
+
+      for ((right_index = left_index + 1; right_index < ${#phases[@]}; right_index++)); do
+        right_phase="${phases[$right_index]}"
+        [ -d "$workspace_path/$right_phase" ] || continue
+        right_stems="$(phase_doc_stems "$workspace_path/$right_phase")"
+        [ "$right_stems" != "" ] || continue
+        right_count="$(printf '%s\n' "$right_stems" | sed '/^$/d' | wc -l | tr -d ' ')"
+        [ "$right_count" -eq 1 ] || continue
+
+        if ! has_shared_stem "$left_stems" "$right_stems"; then
+          left_summary="$(printf '%s' "$left_stems" | paste -sd ',' -)"
+          right_summary="$(printf '%s' "$right_stems" | paste -sd ',' -)"
+          warn "No shared topic slug between workspaces/$workspace_name/$left_phase/ ($left_summary) and workspaces/$workspace_name/$right_phase/ ($right_summary); verify related phase documents use the same slug"
+        fi
+      done
+    done
+  }
+
+  require_wiki_index_targets_exist() {
+    local link=""
+    local target=""
+
+    while IFS= read -r link; do
+      target="${link%%#*}"
+      case "$target" in
+        ""|\#*|http://*|https://*|mailto:*|/*)
+          continue
+          ;;
+      esac
+
+      if [ ! -f "$SCAFFOLD_ROOT/wiki/$target" ]; then
+        fail "wiki/index.md links to missing file: wiki/$target"
+      fi
+    done < <(grep -oE '\[[^]]+\]\([^)]+\)' "$SCAFFOLD_ROOT/wiki/index.md" | sed -E 's/^.*\(([^)]*)\).*$/\1/' | sort -u)
+  }
+
   require_file "LLM-WIKI.md"
   require_file "WIKI-SCHEMA.md"
   require_file "AGENT-RULES.md"
@@ -72,11 +159,13 @@ lint_scaffold() {
   require_executable "scripts/codex.sh"
   require_executable "scripts/claude.sh"
   require_dir "templates/workspace"
+  require_dir "templates/documents"
   require_dir "workspaces"
   require_dir "repos"
 
   for phase in raw-input discovery context requirements tech-spec implementation review; do
     require_file "templates/workspace/$phase/README.md"
+    require_file "templates/documents/$phase.md"
   done
 
   for workspace in "$SCAFFOLD_ROOT"/workspaces/*; do
@@ -111,7 +200,10 @@ lint_scaffold() {
           ;;
       esac
     done
+    warn_phase_slug_mismatch "$workspace" "$name"
   done
+
+  require_wiki_index_targets_exist
 
   while IFS= read -r page; do
     [ -f "$page" ] || continue

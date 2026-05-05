@@ -15,7 +15,7 @@
 | `workspaces/` | 当前项目、模块或功能工作 |
 | `wiki/` | 稳定可复用知识 |
 | `repos/` | 实现代码仓库，通常是 git submodule |
-| `templates/` | 可复用 workspace 文档模板 |
+| `templates/` | workspace 脚手架和可复用文档模板 |
 | `scripts/` | 脚手架 CLI |
 
 ## 从哪里开始
@@ -38,6 +38,12 @@
 ./scripts/scaffold.sh create user-management
 ```
 
+也可以同时创建第一个 topic 文档：
+
+```sh
+./scripts/scaffold.sh create user-management create-user-table
+```
+
 它会生成：
 
 ```text
@@ -51,6 +57,8 @@ workspaces/user-management/
 ├── implementation/
 └── review/
 ```
+
+带 topic slug 时，还会在 `raw-input/`、`requirements/`、`tech-spec/` 中生成 starter 文档。
 
 创建后，优先更新 workspace `README.md`：
 
@@ -207,7 +215,7 @@ workspace 文档可以包含：
 ./scripts/scaffold.sh create user-management
 ```
 
-从 `templates/workspace/` 创建 workspace。
+从 `templates/workspace/` 创建 workspace。可以追加 topic slug，从 `templates/documents/` 创建 starter 文档。
 
 ### Lint Scaffold
 

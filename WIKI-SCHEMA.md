@@ -536,9 +536,9 @@ Run the scaffold lint script after structural changes:
 ./scripts/scaffold.sh lint
 ```
 
-The lint command checks required root files, executable scaffold scripts, template coverage, workspace phase README files, workspace root README placeholders, wiki index coverage, ignored local noise warnings, and `git diff --check`.
+The lint command checks required root files, executable scaffold scripts, workspace phase README files, document template coverage, workspace root README placeholders, wiki index coverage in both directions, phase document naming warnings, ignored local noise warnings, and `git diff --check`.
 
-Wiki index coverage includes nested pages under topic directories.
+Wiki index coverage includes nested pages under topic directories and verifies that `wiki/index.md` links point to existing wiki files.
 
 ## Review Gates
 
