@@ -114,6 +114,23 @@ workspaces/<workspace-name>/
 
 Create only folders that contain real files. Every created folder should contain a `README.md` explaining its role and current contents.
 
+## Workflow Router
+
+Choose the smallest workflow that preserves traceability.
+
+| Situation | Suggested Path |
+|-----------|----------------|
+| Clear small implementation | `implementation` |
+| Bug or support ticket | `raw-input -> implementation -> review` |
+| Bug with unclear expected behavior | `raw-input -> discovery -> requirements -> implementation -> review` |
+| Clear product feature | `requirements -> tech-spec -> implementation -> review` |
+| Ambiguous product work | `raw-input -> discovery -> context -> requirements` |
+| Architecture or cross-module change | `context -> tech-spec -> implementation -> review -> wiki promotion` |
+| Research only | `discovery` or `discovery -> context` |
+| Documentation or knowledge update | `context -> wiki promotion` |
+
+If the suggested path feels too heavy, record a `Phase Shortcut` or `Phase Scope` instead of forcing the full path.
+
 ## Phase Semantics
 
 ### 1. Raw Input
@@ -424,8 +441,28 @@ For requirements, prefer a source traceability table:
 
 | Requirement | Source | Notes |
 |-------------|--------|-------|
-| REQ-001 | ../raw-input/customer-chat-2026-05-05.md | Confirmed by customer |
+| ADMIN-REQ-001 | ../raw-input/customer-chat-2026-05-05.md | Confirmed by customer |
 ```
+
+Requirement and ticket IDs are scoped by workspace to avoid collisions.
+
+Recommended format:
+
+```text
+<WORKSPACE-PREFIX>-REQ-001
+<WORKSPACE-PREFIX>-TICKET-001
+```
+
+Examples:
+
+```text
+ADMIN-REQ-001
+ADMIN-TICKET-001
+CLAIMS-REQ-001
+CLAIMS-TICKET-001
+```
+
+The prefix should be derived from the workspace name and kept stable. Do not use bare `REQ-001` or `TICKET-001` across multiple workspaces.
 
 ## Decisions
 

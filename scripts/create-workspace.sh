@@ -33,6 +33,7 @@ mkdir -p "$target"
 cp -R "$template/." "$target/"
 
 title="$(printf '%s' "$name" | awk -F- '{ for (i=1; i<=NF; i++) { $i=toupper(substr($i,1,1)) substr($i,2) } print }' OFS=' ')"
+prefix="$(printf '%s' "$name" | tr '[:lower:]-' '[:upper:]_')"
 today="$(date +%F)"
 
 cat > "$target/README.md" <<EOF
@@ -66,6 +67,28 @@ Short description of the module, feature, or project.
 
 **Mode:** Full Lifecycle | Standalone Phase | Phase Subset
 **Reason:** <why this workspace uses this amount of process>
+
+## Handoff
+
+### Current State
+
+[Where the work currently stands.]
+
+### Confirmed
+
+- [Confirmed fact or decision]
+
+### Unknown
+
+- [Missing information or unresolved question]
+
+### Next Best Action
+
+[The next action a human or AI should take.]
+
+### Read First
+
+- [Most important file to read first]
 
 ## Key Documents
 
@@ -104,6 +127,10 @@ Short description of the module, feature, or project.
 ## Knowledge Gaps
 
 - [ ] [Missing information]
+
+## ID Prefix
+
+Use \`$prefix-REQ-001\` and \`$prefix-TICKET-001\` IDs for requirements and tickets.
 
 ## Open Questions
 

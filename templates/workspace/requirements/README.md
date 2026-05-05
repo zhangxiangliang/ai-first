@@ -34,9 +34,19 @@ Do not write a tech spec from requirements that still contain unresolved ambigui
 |-------|------|
 | | |
 
+## Tickets
+
+Use workspace-scoped ticket IDs to avoid collisions across workspaces.
+
+| Ticket ID | Source | Summary | Status |
+|-----------|--------|---------|--------|
+| `<WORKSPACE-PREFIX>-TICKET-001` | ../raw-input/<file> | [Short summary] | Open |
+
 ## Functional Requirements
 
-1. [The system shall ...]
+| ID | Requirement |
+|----|-------------|
+| `<WORKSPACE-PREFIX>-REQ-001` | [The system shall ...] |
 
 ## Non-Functional Requirements
 
@@ -44,7 +54,9 @@ Do not write a tech spec from requirements that still contain unresolved ambigui
 
 ## Acceptance Criteria
 
-1. [ ] [Measurable criterion]
+| Requirement ID | Criterion | Status |
+|----------------|-----------|--------|
+| `<WORKSPACE-PREFIX>-REQ-001` | [Measurable criterion] | Not Started |
 
 ## Scope
 
@@ -66,9 +78,9 @@ Do not write a tech spec from requirements that still contain unresolved ambigui
 
 ## Source Traceability
 
-| Requirement | Source |
-|-------------|--------|
-| | ../raw-input/<file> |
+| Requirement ID | Ticket ID | Source | Notes |
+|----------------|-----------|--------|-------|
+| `<WORKSPACE-PREFIX>-REQ-001` | `<WORKSPACE-PREFIX>-TICKET-001` | ../raw-input/<file> | |
 
 ## Approval
 

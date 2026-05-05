@@ -2,6 +2,12 @@
 
 > Chronological record of wiki operations.
 
+## [2026-05-05] ingest | Added lightweight workflow usability rules
+
+- Added workspace handoff guidance to `workflow/ai-first-development.md`
+- Added workspace-scoped requirement and ticket ID guidance
+- Recorded that workflow depth should be chosen through the smallest useful path
+
 ## [2026-05-05] ingest | Added scaffold health checks
 
 - Added `scaffold/scaffold-health-checks.md` from scaffold maintenance documents

@@ -15,14 +15,28 @@
 
 Provide a simple command that checks whether the scaffold's required structure is present and internally discoverable.
 
+## Users / Actors
+
+| Actor | Need |
+|-------|------|
+| Scaffold maintainer | Quickly detect structural drift |
+
+## Tickets
+
+| Ticket ID | Source | Summary | Status |
+|-----------|--------|---------|--------|
+| SCAFFOLD_MAINTENANCE-TICKET-001 | ../raw-input/example-request.md | Add a scaffold health-check script | Closed |
+
 ## Functional Requirements
 
-1. The script shall verify required root files exist.
-2. The script shall verify required root directories exist.
-3. The script shall verify each workspace has a root `README.md`.
-4. The script shall verify each standard phase directory inside a workspace has a `README.md`.
-5. The script shall verify non-index wiki pages are listed in `wiki/index.md`.
-6. The script shall run `git diff --check` and report formatting issues.
+| ID | Requirement |
+|----|-------------|
+| SCAFFOLD_MAINTENANCE-REQ-001 | The script shall verify required root files exist. |
+| SCAFFOLD_MAINTENANCE-REQ-002 | The script shall verify required root directories exist. |
+| SCAFFOLD_MAINTENANCE-REQ-003 | The script shall verify each workspace has a root `README.md`. |
+| SCAFFOLD_MAINTENANCE-REQ-004 | The script shall verify each standard phase directory inside a workspace has a `README.md`. |
+| SCAFFOLD_MAINTENANCE-REQ-005 | The script shall verify non-index wiki pages are listed in `wiki/index.md`. |
+| SCAFFOLD_MAINTENANCE-REQ-006 | The script shall run `git diff --check` and report formatting issues. |
 
 ## Non-Functional Requirements
 
@@ -32,18 +46,20 @@ Provide a simple command that checks whether the scaffold's required structure i
 
 ## Acceptance Criteria
 
-1. [x] Running `./scripts/lint-scaffold.sh` succeeds on the current scaffold.
-2. [x] Missing required files cause a failure.
-3. [x] Non-standard workspace directories produce warnings rather than hard failures.
-4. [x] The script is documented in `scripts/README.md`.
+| Requirement ID | Criterion | Status |
+|----------------|-----------|--------|
+| SCAFFOLD_MAINTENANCE-REQ-001 | Running `./scripts/lint-scaffold.sh` succeeds on the current scaffold. | Pass |
+| SCAFFOLD_MAINTENANCE-REQ-001 | Missing required files cause a failure. | Pass |
+| SCAFFOLD_MAINTENANCE-REQ-004 | Non-standard workspace directories produce warnings rather than hard failures. | Pass |
+| SCAFFOLD_MAINTENANCE-REQ-006 | The script is documented in `scripts/README.md`. | Pass |
 
 ## Source Traceability
 
-| Requirement | Source |
-|-------------|--------|
-| Health-check command | ../raw-input/example-request.md |
-| Workspace phase README checks | ../../WIKI-SCHEMA.md |
-| Wiki index coverage | ../../wiki/workflow/llm-wiki-operations.md |
+| Requirement ID | Ticket ID | Source | Notes |
+|----------------|-----------|--------|-------|
+| SCAFFOLD_MAINTENANCE-REQ-001 | SCAFFOLD_MAINTENANCE-TICKET-001 | ../raw-input/example-request.md | Health-check command |
+| SCAFFOLD_MAINTENANCE-REQ-004 | SCAFFOLD_MAINTENANCE-TICKET-001 | ../../WIKI-SCHEMA.md | Workspace phase README checks |
+| SCAFFOLD_MAINTENANCE-REQ-005 | SCAFFOLD_MAINTENANCE-TICKET-001 | ../../wiki/workflow/llm-wiki-operations.md | Wiki index coverage |
 
 ## Approval
 

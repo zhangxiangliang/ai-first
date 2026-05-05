@@ -48,6 +48,28 @@ Short description of the module, feature, or project.
 **Mode:** Full Lifecycle | Standalone Phase | Phase Subset
 **Reason:** <why this workspace uses this amount of process>
 
+## Handoff
+
+### Current State
+
+[Where the work currently stands.]
+
+### Confirmed
+
+- [Confirmed fact or decision]
+
+### Unknown
+
+- [Missing information or unresolved question]
+
+### Next Best Action
+
+[The next action a human or AI should take.]
+
+### Read First
+
+- [Most important file to read first]
+
 ## Key Documents
 
 - [raw-input/](raw-input/)
@@ -89,6 +111,10 @@ Short description of the module, feature, or project.
 ## Knowledge Gaps
 
 - [ ] [Missing information]
+
+## ID Prefix
+
+Use `<WORKSPACE-PREFIX>-REQ-001` and `<WORKSPACE-PREFIX>-TICKET-001` IDs for requirements and tickets.
 
 ## Next Step
 

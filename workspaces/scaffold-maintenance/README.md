@@ -34,6 +34,31 @@ review
 **Mode:** Full Lifecycle
 **Reason:** This workspace maintains the scaffold and intentionally keeps a complete lifecycle record for reference.
 
+## Handoff
+
+### Current State
+
+The scaffold has a local wiki schema, workspace templates, scaffold maintenance workspace, nested wiki directories, and an ingest queue.
+
+### Confirmed
+
+- `scaffold-maintenance` is the persistent workspace for maintaining this scaffold.
+- Wiki pages use topic directories instead of a flat namespace.
+- Wiki promotion candidates are visible checklist items, not hidden comments.
+
+### Unknown
+
+- No current blocker.
+
+### Next Best Action
+
+Use this workspace for the next scaffold change and keep the handoff current.
+
+### Read First
+
+- [WIKI-SCHEMA.md](../../WIKI-SCHEMA.md)
+- [wiki/scaffold/scaffold-maintenance.md](../../wiki/scaffold/scaffold-maintenance.md)
+
 ## Key Documents
 
 - [raw-input/](raw-input/)
@@ -73,6 +98,15 @@ review
 ## Knowledge Gaps
 
 - [x] No external product knowledge is needed for this example.
+
+## ID Prefix
+
+Use `SCAFFOLD_MAINTENANCE-REQ-001` and `SCAFFOLD_MAINTENANCE-TICKET-001` IDs for requirements and tickets.
+
+## Wiki Promotion Candidates
+
+- [x] wiki/workflow/ai-first-development.md — Workspace README handoff helps humans and AI agents recover context quickly.
+- [x] wiki/workflow/ai-first-development.md — Requirement and ticket IDs should be workspace-scoped to avoid collisions.
 
 ## Open Questions
 

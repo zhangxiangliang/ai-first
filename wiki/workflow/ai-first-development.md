@@ -13,6 +13,8 @@ AI-first development in this scaffold is a PRD-centered workflow that turns orig
 
 The lifecycle is flexible. Substantial or ambiguous work should use the full path. Each phase can also stand alone when that is the right fit, such as discovery-only research, context-only documentation, implementation-only operational work, or review-only audits.
 
+Use the smallest workflow that preserves useful traceability.
+
 ## Lifecycle
 
 ```text
@@ -56,6 +58,38 @@ raw-input -> discovery -> context -> requirements -> tech-spec -> implementation
 | Requirements drafting only | `requirements` |
 | Technical planning only | `tech-spec` |
 | Review or audit only | `review` |
+
+## Handoff
+
+Each workspace README should include a short handoff section:
+
+- current state
+- confirmed facts or decisions
+- unknowns
+- next best action
+- files to read first
+
+The handoff is the fastest recovery point for a human or AI agent entering the workspace.
+
+## Requirement and Ticket IDs
+
+Requirement and ticket IDs are scoped by workspace to avoid collisions.
+
+Use:
+
+```text
+<WORKSPACE-PREFIX>-REQ-001
+<WORKSPACE-PREFIX>-TICKET-001
+```
+
+Examples:
+
+```text
+ADMIN-REQ-001
+ADMIN-TICKET-001
+CLAIMS-REQ-001
+CLAIMS-TICKET-001
+```
 
 ## Wiki Relationship
 
