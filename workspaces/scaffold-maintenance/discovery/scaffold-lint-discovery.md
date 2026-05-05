@@ -44,3 +44,8 @@ The scaffold has multiple moving parts: root rules, schema, templates, workspace
 ## Recommendation
 
 Build a small shell script under `scripts/` that validates scaffold structure and wiki index coverage without enforcing a rigid lifecycle.
+
+## Wiki Promotion Candidates
+
+- [x] wiki/scaffold/scaffold-maintenance.md — Scaffold health checks should preserve flexible workflows and avoid over-enforcing lifecycle order.
+- [x] wiki/scaffold/scaffold-health-checks.md — Scaffold linting should check structural drift but not claim to validate content quality.

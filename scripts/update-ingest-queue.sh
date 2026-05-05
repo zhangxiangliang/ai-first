@@ -34,7 +34,7 @@ while IFS= read -r file; do
     if [ "$in_section" -eq 1 ]; then
       case "$line" in
         "- [ ] "*)
-          candidate="${line#- [ ] }"
+          candidate="$(printf '%s' "$line" | sed 's/^- \[ \] //')"
           count=$((count + 1))
           printf -- '- [ ] `%s` — %s\n' "$rel" "$candidate" >> "$tmp"
           ;;

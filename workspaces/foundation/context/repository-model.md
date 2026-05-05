@@ -52,3 +52,8 @@ Read by layer:
 2. persistent knowledge in `wiki/`
 3. active project material in `workspaces/`
 4. implementation code in `repos/`
+
+## Wiki Promotion Candidates
+
+- [x] wiki/conventions/project-conventions.md — The repository separates persistent wiki knowledge, active workspace planning, and implementation repositories.
+- [x] wiki/workflow/ai-first-development.md — Workspaces own active delivery state while wiki owns stable reusable knowledge.

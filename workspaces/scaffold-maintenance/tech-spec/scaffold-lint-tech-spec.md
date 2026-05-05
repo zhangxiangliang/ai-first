@@ -50,3 +50,7 @@ Remove `scripts/lint-scaffold.sh` and its documentation references.
 
 - The script may become stale if schema structure changes.
 - The script intentionally checks structure, not content quality.
+
+## Wiki Promotion Candidates
+
+- [x] wiki/scaffold/scaffold-health-checks.md — Health-check scripts should be treated as structural guards, not proof of documentation quality.

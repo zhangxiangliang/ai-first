@@ -111,3 +111,9 @@ When adapting this repository for another project:
 - keep `AGENT-RULES.md` generic unless the rule truly belongs to every project using this architecture
 - keep `foundation/` focused on repository-wide conventions and initialization guidance
 - keep project-specific domain knowledge in its own workspace and only move broadly reusable knowledge into `wiki/`
+
+## Wiki Promotion Candidates
+
+- [x] wiki/scaffold/scaffold-maintenance.md — Scaffold-level reusable conclusions should be maintained through a persistent scaffold workspace.
+- [x] wiki/workflow/ai-first-development.md — New project work should start in a workspace and use only the lifecycle phases needed for the task.
+- [x] wiki/conventions/project-conventions.md — Stable repository conventions and reusable operating guidance belong in wiki after they are confirmed.

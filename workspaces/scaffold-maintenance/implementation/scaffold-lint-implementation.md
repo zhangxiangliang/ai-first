@@ -41,3 +41,8 @@
 
 - The script warns on non-standard workspace directories instead of failing, preserving lifecycle flexibility.
 - The script checks wiki index coverage because unindexed pages are hard for future agents to discover.
+
+## Wiki Promotion Candidates
+
+- [x] wiki/workflow/llm-wiki-operations.md — Wiki lint should verify nested wiki pages are listed in `wiki/index.md`.
+- [x] wiki/scaffold/scaffold-health-checks.md — Scaffold linting should warn about flexible structure issues where possible instead of blocking valid non-standard workflows.

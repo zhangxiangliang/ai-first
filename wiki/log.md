@@ -2,6 +2,12 @@
 
 > Chronological record of wiki operations.
 
+## [2026-05-05] ingest | Added scaffold health checks
+
+- Added `scaffold/scaffold-health-checks.md` from scaffold maintenance documents
+- Recorded that scaffold linting is a structural guard, not a content-quality guarantee
+- Updated wiki index with the new scaffold page
+
 ## [2026-05-05] schema | Added self-driven ingest queue
 
 - Added `wiki/ingest-queue.md` as an auto-generated queue for pending wiki promotion candidates

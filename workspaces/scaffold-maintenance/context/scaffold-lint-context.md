@@ -32,3 +32,8 @@ The project scaffold uses `LLM-WIKI.md` as the upstream idea, `WIKI-SCHEMA.md` a
 ## Knowledge Gaps
 
 - [x] None for this example.
+
+## Wiki Promotion Candidates
+
+- [x] wiki/scaffold/scaffold-maintenance.md — Scaffold maintenance work should use this workspace when changing schema, templates, scripts, wiki operations, or workspace structure.
+- [x] wiki/workflow/llm-wiki-operations.md — Stable wiki pages should be discoverable through `wiki/index.md`.
