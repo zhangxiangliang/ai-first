@@ -49,7 +49,7 @@ implementation
 - Scaffold operating rules belong in `AGENT-RULES.md` and `WIKI-SCHEMA.md`.
 - Reusable scaffold conclusions belong in `wiki/`.
 - User project workspaces should stay separate from scaffold maintenance.
-- Scaffold updates must not overwrite user workspace content by default.
+- Scaffold maintenance must stay local and must not automate copying files into downstream projects where user content can be overwritten.
 - `scripts/scaffold.sh` is the single scaffold CLI entry point.
 
 ### Unknown
@@ -95,7 +95,7 @@ Use this workspace for future scaffold changes and keep this handoff current.
 | Date | Decision | Reason |
 |------|----------|--------|
 | 2026-05-05 | Consolidate scaffold work into one workspace | A single scaffold workspace is easier to understand and maintain |
-| 2026-05-05 | Use one scaffold CLI entry point | A single command reduces script discovery and update complexity |
+| 2026-05-05 | Use one scaffold CLI entry point | A single command reduces script discovery and keeps maintenance simple |
 
 ## ID Prefix
 

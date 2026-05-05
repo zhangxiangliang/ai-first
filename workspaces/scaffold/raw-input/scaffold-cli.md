@@ -8,4 +8,4 @@
 
 ## Original Content
 
-The scaffold should use one meaningful CLI entry point instead of multiple separate scripts. It should not include an automated update command because downstream projects may have local content that scaffold automation must not overwrite.
+The scaffold should use one meaningful CLI entry point instead of multiple separate scripts. It should only expose local scaffold operations because downstream projects may have local content that scaffold automation must not overwrite.

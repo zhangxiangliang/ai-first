@@ -24,7 +24,7 @@ Consolidate scaffold operations into `scripts/scaffold.sh` and use `templates/wo
 - Keep `scripts/scaffold.sh` as the only executable scaffold script.
 - Keep subcommand implementations in `scripts/lib/*.sh` so `scripts/scaffold.sh` stays a small dispatcher.
 - Implement subcommands: `create`, `lint`, and `ingest`.
-- Do not implement an automated update command; downstream projects can have local files that scaffold automation must not overwrite.
+- Keep the command surface limited to local scaffold operations; downstream projects can have local files that scaffold automation must not overwrite.
 - Generate workspace root README files from `templates/workspace-root.md`.
 - Update docs, wiki pages, and scaffold workspace records to use the single command.
 

@@ -14,7 +14,7 @@
 |------|--------|-------|-------|
 | Consolidate CLI entry point | Complete | AI agent | `scripts/scaffold.sh` owns create, lint, and ingest |
 | Split CLI internals | Complete | AI agent | Subcommand logic lives in `scripts/lib/*.sh` |
-| Remove update surface | Complete | AI agent | No automated downstream update command is exposed |
+| Limit command surface | Complete | AI agent | Only local scaffold operations are exposed |
 | Extract root README template | Complete | AI agent | `templates/workspace-root.md` drives workspace README generation |
 | Update documentation | Complete | AI agent | Docs now prefer `./scripts/scaffold.sh ...` |
 

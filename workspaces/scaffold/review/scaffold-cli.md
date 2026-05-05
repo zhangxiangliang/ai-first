@@ -18,7 +18,7 @@
 | CLI internals are split | Pass | `scripts/scaffold.sh` sources implementation modules from `scripts/lib/` |
 | Generic workspace names are rejected | Pass | `./scripts/scaffold.sh create request` exits non-zero |
 | Workspace creation still works | Pass | Temporary-directory create simulation |
-| Update command is absent | Pass | `scripts/scaffold.sh` exposes no update subcommand |
+| Command surface is limited | Pass | Help output lists only `create`, `lint`, and `ingest` |
 
 ## Issues Found
 
@@ -31,4 +31,4 @@
 **Decision:** Approved
 **Decided By:** AI agent
 **Date:** 2026-05-05
-**Notes:** The scaffold now has one primary script entry point without an automated downstream update command.
+**Notes:** The scaffold now has one primary script entry point for local scaffold operations.

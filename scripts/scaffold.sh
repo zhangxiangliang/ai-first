@@ -39,7 +39,7 @@ case "$command" in
     usage
     ;;
   *)
-    printf 'Unknown command: %s\n' "$command" >&2
+    printf 'Unknown command.\n' >&2
     usage >&2
     exit 1
     ;;

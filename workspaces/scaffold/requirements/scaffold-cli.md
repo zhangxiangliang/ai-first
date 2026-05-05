@@ -8,7 +8,7 @@
 
 **Standalone:** No
 **Reason:** This change affects scripts, docs, and scaffold maintenance flow.
-**Expected Output:** Single CLI entry point without automated downstream file updates.
+**Expected Output:** Single CLI entry point for local scaffold operations.
 **Next Phase:** tech-spec
 
 ## Goal
@@ -20,7 +20,7 @@ Provide one primary scaffold command that is easy to remember and safe to use.
 | ID | Requirement |
 |----|-------------|
 | SCAFFOLD-REQ-010 | The scaffold shall expose `create`, `lint`, and `ingest` through `scripts/scaffold.sh`. |
-| SCAFFOLD-REQ-011 | The scaffold shall not provide an automated update command that can copy files into downstream projects. |
+| SCAFFOLD-REQ-011 | The scaffold shall only expose operations that stay within the current repository. |
 | SCAFFOLD-REQ-013 | Workspace root README generation shall use a template file instead of embedding the document in shell code. |
 | SCAFFOLD-REQ-014 | Documentation shall recommend the single CLI entry point. |
 | SCAFFOLD-REQ-015 | The single CLI entry point shall delegate implementation details to internal script modules instead of keeping all logic in one large file. |
@@ -30,7 +30,7 @@ Provide one primary scaffold command that is easy to remember and safe to use.
 | Requirement ID | Criterion | Status |
 |----------------|-----------|--------|
 | SCAFFOLD-REQ-010 | `./scripts/scaffold.sh create`, `lint`, and `ingest` run from the single script. | Pass |
-| SCAFFOLD-REQ-011 | `./scripts/scaffold.sh` exposes no `update` subcommand. | Pass |
+| SCAFFOLD-REQ-011 | `./scripts/scaffold.sh --help` lists only `create`, `lint`, and `ingest`. | Pass |
 | SCAFFOLD-REQ-013 | `create` renders `templates/workspace-root.md`. | Pass |
 | SCAFFOLD-REQ-014 | User-facing docs use `./scripts/scaffold.sh ...` commands. | Pass |
 | SCAFFOLD-REQ-015 | `scripts/scaffold.sh` dispatches to `scripts/lib/*.sh` modules. | Pass |
