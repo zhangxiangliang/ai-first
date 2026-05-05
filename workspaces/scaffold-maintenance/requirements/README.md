@@ -75,8 +75,4 @@ Do not write a tech spec from requirements that still contain unresolved ambigui
 **Approved By:** <name>
 **Approval Date:** YYYY-MM-DD
 **Notes:** <notes>
-
-## Wiki Promotion Candidates
-
-- [ ] wiki/<topic>/<page>.md — Reusable product rule, domain concept, or requirement pattern
 ```

@@ -1,7 +1,7 @@
 ---
 title: AI-First Development Lifecycle
 source: WIKI-SCHEMA.md
-see-also: [llm-wiki-operations.md, conventions.md]
+see-also: [llm-wiki-operations.md, ../conventions/project-conventions.md, ../scaffold/scaffold-maintenance.md]
 created: 2026-05-05
 updated: 2026-05-05
 tags: [ai-first, prd, lifecycle, workspaces]

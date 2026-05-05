@@ -2,6 +2,20 @@
 
 > Chronological record of wiki operations.
 
+## [2026-05-05] schema | Added self-driven ingest queue
+
+- Added `wiki/ingest-queue.md` as an auto-generated queue for pending wiki promotion candidates
+- Added `scripts/update-ingest-queue.sh` to scan visible workspace `Wiki Promotion Candidates` sections
+- Updated scaffold lint to require the ingest queue and warn on pending ingest markers
+- Documented visible wiki promotion candidate workflow
+
+## [2026-05-05] ingest | Added scaffold maintenance knowledge and wiki directories
+
+- Reorganized wiki pages into topic directories: `workflow/`, `conventions/`, `design/`, and `scaffold/`
+- Added `scaffold/scaffold-maintenance.md` from `workspaces/scaffold-maintenance/`
+- Updated wiki index for nested page paths
+- Recorded that durable scaffold maintenance conclusions must be ingested into the wiki
+
 ## [2026-05-05] schema | Added AI-first LLM Wiki lifecycle
 
 - Added local `WIKI-SCHEMA.md` for applying the LLM Wiki pattern to PRD-driven AI-first development

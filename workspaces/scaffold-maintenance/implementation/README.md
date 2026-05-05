@@ -53,8 +53,4 @@ Implementation tracks execution after the tech spec is approved.
 - [What changed]
 - [Blockers]
 - [Next step]
-
-## Wiki Promotion Candidates
-
-- [ ] wiki/<topic>/<page>.md — Durable implementation decision or reusable technical finding
 ```

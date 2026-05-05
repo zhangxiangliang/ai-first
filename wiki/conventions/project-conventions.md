@@ -1,7 +1,7 @@
 ---
 title: Project Conventions
 source: workspaces/foundation/raw-input/conventions.md
-see-also: [git-commit.md, git-workflow.md]
+see-also: [git-commit.md, git-workflow.md, ../workflow/ai-first-development.md]
 created: 2026-04-16
 updated: 2026-04-16
 tags: [conventions, standards, foundation]
@@ -27,6 +27,7 @@ tags: [conventions, standards, foundation]
 
 - All markdown files in English
 - Wiki is auto-maintained by LLM — humans work in workspaces, knowledge sinks to wiki
+- Wiki pages are organized by topic directories to avoid an unreadable flat namespace
 - Lookup order: wiki → workspace context → code
 
 ## Code

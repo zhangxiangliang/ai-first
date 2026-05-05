@@ -82,6 +82,22 @@ Examples:
 
 Do not use the wiki as the only place for active project execution state. Active state belongs in the relevant workspace.
 
+Wiki pages should be organized by topic directories as the knowledge base grows. Avoid keeping every page in one flat directory.
+
+Recommended starting categories:
+
+```text
+wiki/
+├── index.md
+├── log.md
+├── conventions/
+├── design/
+├── scaffold/
+└── workflow/
+```
+
+Add new topic directories when a group of pages has a stable shared theme.
+
 ## Workspace Structure
 
 ```text
@@ -303,6 +319,29 @@ When skipping phases, record the reason in the active document. For example:
 **Risk:** No formal PRD traceability for this change.
 ```
 
+### Self-Driven Ingest Queue
+
+Workspace documents should include a visible section when they may produce reusable knowledge:
+
+```md
+## Wiki Promotion Candidates
+
+- [ ] wiki/<topic>/<page>.md — Stable conclusion to promote
+- [x] wiki/<topic>/<existing-page>.md — Already promoted
+```
+
+Then run:
+
+```sh
+./scripts/update-ingest-queue.sh
+```
+
+This generates `wiki/ingest-queue.md`, which is the queue of pending durable knowledge candidates.
+
+When a candidate has been promoted, check off the item in the source workspace document.
+
+Self-driven ingest does not mean scripts decide what is true. It means the scaffold can automatically surface visible, human-readable promotion candidates that humans or AI agents must review.
+
 ### Query Workflow
 
 Use query when answering questions.
@@ -434,6 +473,8 @@ Run the scaffold lint script after structural changes:
 ```
 
 The lint script checks required root files, template coverage, workspace phase README files, wiki index coverage, and `git diff --check`.
+
+Wiki index coverage includes nested pages under topic directories.
 
 ## Review Gates
 

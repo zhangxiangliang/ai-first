@@ -82,8 +82,4 @@ Tech specs translate approved requirements into an implementation design.
 **Review Date:** YYYY-MM-DD
 **Decision:** Approved | Changes Requested | Rejected
 **Notes:** <notes>
-
-## Wiki Promotion Candidates
-
-- [ ] wiki/<topic>/<page>.md — Reusable architecture decision, technical pattern, or operational rule
 ````

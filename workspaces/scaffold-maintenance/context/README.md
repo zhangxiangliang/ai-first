@@ -53,8 +53,4 @@ Context gives future humans and agents the background needed to reason correctly
 ## Knowledge Gaps
 
 - [ ] [Missing context]
-
-## Wiki Promotion Candidates
-
-- [ ] wiki/<topic>/<page>.md — Stable context that should become reusable wiki knowledge
 ```

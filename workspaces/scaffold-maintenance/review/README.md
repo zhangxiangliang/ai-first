@@ -52,8 +52,4 @@ Review verifies that implementation satisfies the approved requirements and tech
 **Decided By:** <name>
 **Date:** YYYY-MM-DD
 **Notes:** <notes>
-
-## Wiki Promotion Candidates
-
-- [ ] wiki/<topic>/<page>.md — Stable conclusion from review that should be reusable
 ```

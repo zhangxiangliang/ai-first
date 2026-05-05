@@ -35,3 +35,23 @@ Run a structural health check:
 ```
 
 This checks required root files, workspace phase README files, template coverage, wiki index coverage, and `git diff --check`.
+
+## Update Ingest Queue
+
+Generate the wiki ingest queue from workspace markers:
+Generate the wiki ingest queue from visible workspace sections:
+
+```sh
+./scripts/update-ingest-queue.sh
+```
+
+Workspace documents can include:
+
+```md
+## Wiki Promotion Candidates
+
+- [ ] wiki/scaffold/example.md — Stable conclusion to promote
+- [x] wiki/workflow/example.md — Already promoted
+```
+
+Unchecked items are collected into `wiki/ingest-queue.md`.

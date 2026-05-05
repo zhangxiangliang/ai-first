@@ -29,6 +29,7 @@ require_file "CLAUDE.md"
 require_file "README.md"
 require_file "wiki/index.md"
 require_file "wiki/log.md"
+require_file "wiki/ingest-queue.md"
 require_dir "templates/workspace"
 require_dir "workspaces"
 require_dir "repos"
@@ -56,18 +57,22 @@ for workspace in "$root"/workspaces/*; do
   done
 done
 
-for page in "$root"/wiki/*.md; do
+while IFS= read -r page; do
   [ -f "$page" ] || continue
-  base="$(basename "$page")"
-  case "$base" in
+  rel="${page#"$root/wiki/"}"
+  case "$rel" in
     index.md|log.md)
       continue
       ;;
   esac
-  if ! grep -Fq "$base" "$root/wiki/index.md"; then
-    fail "Wiki page not listed in wiki/index.md: wiki/$base"
+  if ! grep -Fq "$rel" "$root/wiki/index.md"; then
+    fail "Wiki page not listed in wiki/index.md: wiki/$rel"
   fi
-done
+done < <(find "$root/wiki" -type f -name '*.md' | sort)
+
+if grep -Fq -- '- [ ] `' "$root/wiki/ingest-queue.md"; then
+  warn "wiki/ingest-queue.md contains pending wiki promotion candidates"
+fi
 
 diff_check_output="$(git -C "$root" diff --check || true)"
 if [ "$diff_check_output" != "" ]; then

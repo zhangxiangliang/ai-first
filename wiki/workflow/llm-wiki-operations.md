@@ -1,7 +1,7 @@
 ---
 title: LLM Wiki Operations
 source: WIKI-SCHEMA.md
-see-also: [ai-first-development.md, conventions.md]
+see-also: [ai-first-development.md, ../conventions/project-conventions.md, ../scaffold/scaffold-maintenance.md]
 created: 2026-05-05
 updated: 2026-05-05
 tags: [llm-wiki, ingest, query, lint, schema]
@@ -26,8 +26,11 @@ Rules:
 - Keep raw inputs unchanged.
 - Put interpretation in discovery, context, requirements, or wiki.
 - Promote only stable reusable knowledge to the wiki.
+- Add durable candidates to a visible `## Wiki Promotion Candidates` section in workspace documents.
+- Use `./scripts/update-ingest-queue.sh` to regenerate `wiki/ingest-queue.md`.
 - Update `wiki/index.md` when navigation changes.
 - Append `wiki/log.md` when wiki knowledge changes.
+- Use topic directories such as `workflow/`, `conventions/`, `design/`, and `scaffold/` as the wiki grows.
 
 ## Query
 
@@ -55,7 +58,9 @@ Check for:
 - requirements without traceable sources
 - unclear requirements feeding tech specs
 - durable workspace conclusions missing from the wiki
+- pending items in `wiki/ingest-queue.md`
 - wiki pages missing from `wiki/index.md`
+- wiki pages placed in a crowded flat namespace instead of a topic directory
 - stale claims
 - contradictions across raw inputs, requirements, tech specs, wiki, and code
 - missing links between related workspaces

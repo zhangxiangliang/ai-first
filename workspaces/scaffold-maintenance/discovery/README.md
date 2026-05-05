@@ -56,7 +56,5 @@ Use discovery to understand the problem before writing requirements.
 
 ## Candidate Wiki Updates
 
-## Wiki Promotion Candidates
-
-- [ ] wiki/<topic>/<page>.md — Stable concept or reusable conclusion that may belong in wiki
+- [Stable concept or reusable conclusion that may belong in wiki]
 ```
