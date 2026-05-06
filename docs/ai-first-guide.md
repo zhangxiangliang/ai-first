@@ -217,13 +217,21 @@ To complete an ingest:
 
 Creates a workspace from `templates/workspace/`. Add an optional topic slug to create starter documents from `templates/documents/`.
 
+### Create Document
+
+```sh
+./scripts/scaffold.sh create-doc user-management implementation create-user-table
+```
+
+Creates a phase document in an existing workspace. Use `all` instead of a phase name to create every standard phase document for the topic.
+
 ### Lint Scaffold
 
 ```sh
 ./scripts/scaffold.sh lint
 ```
 
-Checks scaffold structure, executable scaffold scripts, workspace phase README files, workspace root README placeholders, wiki index coverage, ingest queue presence, and `git diff --check`.
+Checks scaffold structure, executable scaffold scripts, workspace phase README files, document template coverage, workspace root README placeholders, wiki index coverage in both directions, phase document naming warnings, ignored local noise files, ingest queue presence, and `git diff --check`.
 
 This is a structural guard. It does not prove that document content is complete or correct.
 

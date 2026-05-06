@@ -51,6 +51,22 @@ tech-spec/create-user-table.md
 implementation/create-user-table.md
 ```
 
+## Create Document
+
+Create a phase document in an existing workspace:
+
+```sh
+./scripts/scaffold.sh create-doc user-management implementation create-user-table
+```
+
+Create all standard phase documents for a topic:
+
+```sh
+./scripts/scaffold.sh create-doc user-management all create-user-table
+```
+
+`create-doc` renders templates from `templates/documents/` and refuses to overwrite existing files.
+
 ## Lint Scaffold
 
 Run a structural health check:

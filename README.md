@@ -61,6 +61,12 @@ Optionally create the first topic documents at the same time:
 
 This creates starter documents in `raw-input/`, `requirements/`, and `tech-spec/` using the same topic slug.
 
+Create more phase documents later with:
+
+```sh
+./scripts/scaffold.sh create-doc user-management implementation create-user-table
+```
+
 Use meaningful kebab-case names. Keep the same topic slug across phase documents, for example `raw-input/create-user-table.md`, `requirements/create-user-table.md`, and `tech-spec/create-user-table.md`.
 
 Update the generated workspace README, especially:

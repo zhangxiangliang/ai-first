@@ -61,6 +61,12 @@ raw-input -> discovery -> context -> requirements -> tech-spec -> implementation
 
 这会使用同一个 topic slug 在 `raw-input/`、`requirements/`、`tech-spec/` 中生成 starter 文档。
 
+后续可以继续创建其他阶段文档：
+
+```sh
+./scripts/scaffold.sh create-doc user-management implementation create-user-table
+```
+
 名称要用有意义的 kebab-case。相同事项在不同阶段复用同一个 topic slug，例如 `raw-input/create-user-table.md`、`requirements/create-user-table.md`、`tech-spec/create-user-table.md`。
 
 然后更新生成的 workspace README，尤其是：

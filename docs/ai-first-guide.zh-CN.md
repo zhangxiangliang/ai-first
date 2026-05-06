@@ -217,13 +217,21 @@ workspace 文档可以包含：
 
 从 `templates/workspace/` 创建 workspace。可以追加 topic slug，从 `templates/documents/` 创建 starter 文档。
 
+### Create Document
+
+```sh
+./scripts/scaffold.sh create-doc user-management implementation create-user-table
+```
+
+在已有 workspace 中创建阶段文档。把阶段名换成 `all` 可以为同一个 topic 创建所有标准阶段文档。
+
 ### Lint Scaffold
 
 ```sh
 ./scripts/scaffold.sh lint
 ```
 
-检查脚手架结构、可执行 scaffold 脚本、workspace 阶段 README、workspace 根 README 占位符、wiki index 覆盖、ingest queue 是否存在，以及 `git diff --check`。
+检查脚手架结构、可执行 scaffold 脚本、workspace 阶段 README、文档模板覆盖、workspace 根 README 占位符、wiki index 双向覆盖、阶段文档命名 warning、被忽略的本地噪声文件、ingest queue 是否存在，以及 `git diff --check`。
 
 这是结构检查，不代表文档内容完整或正确。
 
