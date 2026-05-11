@@ -302,11 +302,30 @@ When beginning work:
 1. Read `LLM-WIKI.md`.
 2. Read this schema.
 3. Read `AGENT-RULES.md` for hard local rules.
-4. Identify the active workspace.
-5. Read the workspace `README.md`.
-6. Read only the relevant phase documents.
-7. Read relevant wiki pages through `wiki/index.md`.
-8. Read implementation code only after project intent and context are clear.
+4. Read `scripts/README.md` for available scaffold commands.
+5. Identify the active workspace.
+6. Read the workspace `README.md`.
+7. Read only the relevant phase documents.
+8. Read relevant wiki pages through `wiki/index.md`.
+9. Read implementation code only after project intent and context are clear.
+
+### Workspace Creation Workflow
+
+Use the scaffold CLI when creating workspaces or phase documents. The directory layout in this schema explains the target structure; it is not an instruction to recreate the structure manually.
+
+Create a workspace with:
+
+```sh
+./scripts/scaffold.sh create <workspace-name> [topic-slug]
+```
+
+Create additional phase documents with:
+
+```sh
+./scripts/scaffold.sh create-doc <workspace-name> <phase|all> <topic-slug>
+```
+
+Only create workspace directories or phase documents manually when the CLI cannot support the needed change, and record the reason in the relevant workspace handoff or implementation note.
 
 ### Ingest Workflow
 

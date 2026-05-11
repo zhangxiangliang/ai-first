@@ -20,9 +20,21 @@ project-root/
 - The upstream `raw/` idea is expanded into the phase lifecycle defined by `WIKI-SCHEMA.md`
 - `wiki/` stores reusable cross-project knowledge
 - `templates/` stores reusable scaffolding for new workspaces and phase documents
+- `scripts/scaffold.sh` is the only user-facing command for creating workspaces, creating phase documents, linting, and generating ingest queues
 - All persistent files are in English and use kebab-case file names
 - Workspace names must be meaningful project, module, feature, or outcome names, not generic placeholders
 - For one work item, reuse the same topic slug across workspace phase documents, such as `raw-input/create-user-table.md` and `requirements/create-user-table.md`
+
+## Scaffold Commands
+
+Use `./scripts/scaffold.sh` for scaffold operations instead of hand-copying templates or inventing files.
+
+- Create a workspace with `./scripts/scaffold.sh create <workspace-name> [topic-slug]`
+- Create phase documents with `./scripts/scaffold.sh create-doc <workspace-name> <phase|all> <topic-slug>`
+- Run structural checks with `./scripts/scaffold.sh lint`
+- Generate the wiki ingest queue with `./scripts/scaffold.sh ingest`
+
+Do not call files under `scripts/lib/` directly. They are internal modules sourced by `scripts/scaffold.sh`.
 
 ## Reuse Intent
 
@@ -43,15 +55,17 @@ Use this order when working:
 
 1. This file for agent operating rules
 2. `WIKI-SCHEMA.md` for wiki/workspace lifecycle rules
-3. Relevant knowledge pages in `wiki/`
-4. Relevant project workspace in `workspaces/`
-5. Code in `repos/`
+3. `scripts/README.md` for scaffold commands and operational entry points
+4. Relevant knowledge pages in `wiki/`
+5. Relevant project workspace in `workspaces/`
+6. Code in `repos/`
 
 Do not treat "wiki first" as "read every wiki page first".
 Use `wiki/` for persistent knowledge, then consult the relevant workspace for current-project context, plans, and source material.
 
 ## Hard Rules
 
+- Use `./scripts/scaffold.sh` for scaffold-supported workspace and phase document creation before creating those files manually
 - Before any commit, propose the commit message and wait for user approval
 - Follow Conventional Commits when committing
 - Commit messages must be in English, concise, and without Chinese
