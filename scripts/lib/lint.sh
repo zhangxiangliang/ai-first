@@ -170,7 +170,12 @@ EOF
           fail "Markdown link points to missing target: $rel -> $target"
         fi
       done < <(grep -oE '!?\[[^]]+\]\([^)]+\)' "$page" | sed -E 's/^!?\[[^]]+\]\(([^)[:space:]]+).*$/\1/' | sort -u)
-    done < <(find "$SCAFFOLD_ROOT" -path "$SCAFFOLD_ROOT/.git" -prune -o -type f -name '*.md' -print | sort)
+    done < <(
+      find "$SCAFFOLD_ROOT" \
+        -path "$SCAFFOLD_ROOT/.git" -prune -o \
+        -path "$SCAFFOLD_ROOT/repos" -prune -o \
+        -type f -name '*.md' -print | sort
+    )
   }
 
   require_file "LLM-WIKI.md"
