@@ -25,10 +25,37 @@ When entering the project, read:
 1. `LLM-WIKI.md`
 2. `WIKI-SCHEMA.md`
 3. `AGENT-RULES.md`
-4. the active workspace `README.md`
-5. relevant pages from `wiki/index.md`
+4. `scripts/README.md`
+5. the active workspace `README.md`
+6. relevant pages from `wiki/index.md`
 
 Do not read every file by default. Start from the active workspace and follow links.
+
+## New Project Setup
+
+If this repository was cloned as a starting point for a new project, update Git remotes before the first project commit or push. Otherwise commits can still target the scaffold source repository.
+
+Replace `origin` with the new project repository:
+
+```sh
+git remote set-url origin <your-project-repo-url>
+git remote -v
+```
+
+Or keep the scaffold remote for reference and add the project repository as `origin`:
+
+```sh
+git remote rename origin scaffold
+git remote add origin <your-project-repo-url>
+git remote -v
+```
+
+Before pushing, verify that `origin` is the project repository:
+
+```sh
+git remote get-url origin
+git push -u origin main
+```
 
 ## Create a Workspace
 

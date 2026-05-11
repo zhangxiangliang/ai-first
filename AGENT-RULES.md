@@ -75,6 +75,8 @@ Use `wiki/` for persistent knowledge, then consult the relevant workspace for cu
 ## Repository Boundaries
 
 - This repository manages knowledge, workspace documents, and shared agent rules
+- When this scaffold is cloned for a new project, verify `git remote get-url origin` points to the user's project repository before committing or pushing project-specific changes
+- If `origin` still points to the scaffold source repository, ask the user for the correct project repository URL before pushing
 - Repositories under `repos/` are implementation targets and keep their own independent git history
 - Prefer linking implementation repositories under `repos/` as git submodules
 - When implementation work from `workspaces/` is applied to a repository under `repos/`, review and commit the code changes inside that target repository

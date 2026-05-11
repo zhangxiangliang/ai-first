@@ -47,6 +47,35 @@ raw-input -> discovery -> context -> requirements -> tech-spec -> implementation
 
 ## 快速开始
 
+### 新项目初始化
+
+把这个 scaffold 用在新项目时，先把 Git 指向你自己的仓库，再提交或 push。直接 `git clone` 会保留这个 scaffold 仓库作为 `origin`。
+
+方式 A：把 `origin` 改成你的项目仓库：
+
+```sh
+git remote set-url origin <your-project-repo-url>
+git remote -v
+```
+
+方式 B：保留 scaffold 作为上游参考，再新增你的项目 `origin`：
+
+```sh
+git remote rename origin scaffold
+git remote add origin <your-project-repo-url>
+git remote -v
+```
+
+然后把项目分支推到自己的仓库：
+
+```sh
+git push -u origin main
+```
+
+在让 AI agent 提交或 push 项目 workspace 改动前，先完成这一步。
+
+### 创建 Workspace
+
 创建 workspace：
 
 ```sh

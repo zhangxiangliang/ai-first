@@ -47,6 +47,35 @@ Examples:
 
 ## Quick Start
 
+### New Project Setup
+
+When using this scaffold for a new project, point Git at your own repository before committing or pushing. A plain `git clone` keeps this scaffold repository as `origin`.
+
+Option A: replace `origin` with your project repository:
+
+```sh
+git remote set-url origin <your-project-repo-url>
+git remote -v
+```
+
+Option B: keep the scaffold as an upstream reference and add your project as `origin`:
+
+```sh
+git remote rename origin scaffold
+git remote add origin <your-project-repo-url>
+git remote -v
+```
+
+Then push the project branch to your own repository:
+
+```sh
+git push -u origin main
+```
+
+Do this before asking an AI agent to commit or push project-specific workspace changes.
+
+### Create Workspace
+
 Create a workspace:
 
 ```sh

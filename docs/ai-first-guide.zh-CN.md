@@ -25,10 +25,37 @@
 1. `LLM-WIKI.md`
 2. `WIKI-SCHEMA.md`
 3. `AGENT-RULES.md`
-4. 当前 workspace 的 `README.md`
-5. `wiki/index.md` 里相关页面
+4. `scripts/README.md`
+5. 当前 workspace 的 `README.md`
+6. `wiki/index.md` 里相关页面
 
 不要默认读取所有文件。先从当前 workspace 开始，再顺着链接读。
+
+## 新项目初始化
+
+如果这个仓库是作为新项目起点 clone 下来的，第一次项目提交或 push 前先更新 Git remote。否则 commit/push 仍然可能指向 scaffold 源仓库。
+
+把 `origin` 改成新项目仓库：
+
+```sh
+git remote set-url origin <your-project-repo-url>
+git remote -v
+```
+
+或者保留 scaffold remote 作为参考，再把项目仓库加为 `origin`：
+
+```sh
+git remote rename origin scaffold
+git remote add origin <your-project-repo-url>
+git remote -v
+```
+
+push 前确认 `origin` 是项目仓库：
+
+```sh
+git remote get-url origin
+git push -u origin main
+```
 
 ## 创建 Workspace
 
