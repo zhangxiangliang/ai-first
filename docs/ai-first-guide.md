@@ -1,7 +1,5 @@
 # AI Workspace Scaffold Guide
 
-[中文指南](ai-first-guide.zh-CN.md)
-
 This guide explains how to work inside AI Workspace Scaffold.
 
 The goal is not to force a heavy process. The goal is to keep enough structure that a human or AI agent can recover context, understand the current state, and continue work without rediscovering everything from scratch.
@@ -82,6 +80,7 @@ workspaces/user-management/
 ├── requirements/
 ├── tech-spec/
 ├── implementation/
+├── worklog/
 └── review/
 ```
 
@@ -100,19 +99,24 @@ After creation, update the workspace `README.md`, especially:
 The full reference lifecycle is:
 
 ```text
-raw-input -> discovery -> context -> requirements -> tech-spec -> implementation -> review
+raw-input -> discovery -> context -> requirements -> tech-spec -> implementation -> worklog -> review
 ```
 
-This is not mandatory. Choose the smallest path that preserves useful traceability.
+`worklog` is an optional running log; use it for long-running or multi-session work.
+
+This is not mandatory. Choose the smallest path that preserves useful traceability, subject to two invariants:
+
+- **raw-input is almost always required** — it records why a change exists. Only standalone `discovery` or `context` may omit it.
+- **tech-spec precedes implementation for anything beyond a simple change** — it is the cheap human review gate where direction is checked before implementation detail. Only simple, low-risk changes go `raw-input -> implementation` directly.
 
 | Situation | Suggested Path |
 |-----------|----------------|
-| Clear small implementation | `implementation` |
-| Bug or support ticket | `raw-input -> implementation -> review` |
-| Bug with unclear expected behavior | `raw-input -> discovery -> requirements -> implementation -> review` |
-| Clear product feature | `requirements -> tech-spec -> implementation -> review` |
+| Simple, low-risk change | `raw-input -> implementation` |
+| Bug or support ticket | `raw-input -> tech-spec -> implementation -> review` (a simple bug may skip tech-spec) |
+| Bug with unclear expected behavior | `raw-input -> discovery -> requirements -> tech-spec -> implementation -> review` |
+| Clear product feature | `raw-input -> requirements -> tech-spec -> implementation -> review` |
 | Ambiguous product work | `raw-input -> discovery -> context -> requirements` |
-| Architecture or cross-module change | `context -> tech-spec -> implementation -> review -> wiki promotion` |
+| Architecture or cross-module change | `raw-input -> context -> tech-spec -> implementation -> review -> wiki promotion` |
 | Research only | `discovery` or `discovery -> context` |
 | Documentation or knowledge update | `context -> wiki promotion` |
 

@@ -60,8 +60,10 @@ workspaces/<workspace-name>/
 The full reference lifecycle is:
 
 ```text
-raw-input -> discovery -> context -> requirements -> tech-spec -> implementation -> review
+raw-input -> discovery -> context -> requirements -> tech-spec -> implementation -> worklog -> review
 ```
+
+`worklog` is a running session log, kept separate from the implementation document and used for long-running or multi-session work. See [Worklog](#worklog) for its semantics.
 
 This lifecycle is a reference path, not a mandatory sequence. Each phase can be used independently when that is the right amount of process for the task. For example, a workspace may contain only `discovery/`, only `context/`, only `implementation/`, or any subset of phases.
 
@@ -109,23 +111,29 @@ workspaces/<workspace-name>/
 ├── requirements/
 ├── tech-spec/
 ├── implementation/
+├── worklog/
 └── review/
 ```
 
 Create only folders that contain real files. Every created folder should contain a `README.md` explaining its role and current contents.
 
+Recognized auxiliary directories — `test-cases/`, `plan/`, and `docs/` — are accepted by lint but ship no document template, so populate them by hand. Lint nudges common variants toward a canonical name (for example `tests/` toward `test-cases/`, `worklogs/` toward `worklog/`).
+
 ## Workflow Router
 
-Choose the smallest workflow that preserves traceability.
+Choose the smallest workflow that preserves traceability, subject to two invariants:
+
+- **raw-input is almost always required.** It records where the work came from, so future readers can reconstruct *why* a change exists. Omit it only for standalone research (`discovery`) or standalone background capture (`context`), which do not originate a change.
+- **tech-spec precedes implementation for anything beyond a simple change.** It is the cheap human review gate: a human checks *direction* on the small tech-spec before the costly detail of implementation. Only genuinely simple, low-risk changes may go `raw-input -> implementation` directly.
 
 | Situation | Suggested Path |
 |-----------|----------------|
-| Clear small implementation | `implementation` |
-| Bug or support ticket | `raw-input -> implementation -> review` |
-| Bug with unclear expected behavior | `raw-input -> discovery -> requirements -> implementation -> review` |
-| Clear product feature | `requirements -> tech-spec -> implementation -> review` |
+| Simple, low-risk change | `raw-input -> implementation` |
+| Bug or support ticket | `raw-input -> tech-spec -> implementation -> review` (a simple bug may skip tech-spec) |
+| Bug with unclear expected behavior | `raw-input -> discovery -> requirements -> tech-spec -> implementation -> review` |
+| Clear product feature | `raw-input -> requirements -> tech-spec -> implementation -> review` |
 | Ambiguous product work | `raw-input -> discovery -> context -> requirements` |
-| Architecture or cross-module change | `context -> tech-spec -> implementation -> review -> wiki promotion` |
+| Architecture or cross-module change | `raw-input -> context -> tech-spec -> implementation -> review -> wiki promotion` |
 | Research only | `discovery` or `discovery -> context` |
 | Documentation or knowledge update | `context -> wiki promotion` |
 
@@ -292,6 +300,22 @@ Exit criteria:
 - acceptance criteria are checked
 - test status is recorded
 - final decision is explicit: approved, changes requested, or rejected
+
+### Worklog
+
+Purpose: keep a running, chronological log of work sessions, separate from the per-topic implementation document.
+
+Worklog is a cross-cutting phase, not a sequential gate: it runs alongside implementation rather than after it. Use it when the narrative of what happened, when, and why should survive on its own — typically for long-running or multi-session work. The implementation document holds the current state; the worklog holds the history.
+
+Typical content:
+
+- one append-only entry per session: did, decided, blocked, next
+- links to the related implementation and tech-spec documents
+
+Exit criteria:
+
+- sessions are recorded in order and never rewritten
+- durable findings are reflected into implementation, tech spec, or wiki
 
 ## Agent Operating Workflows
 
@@ -555,18 +579,34 @@ Run the scaffold lint script after structural changes:
 ./scripts/scaffold.sh lint
 ```
 
-The lint command checks required root files, executable scaffold scripts, workspace phase README files, document template coverage, workspace root README placeholders, wiki index coverage in both directions, phase document naming warnings, ignored local noise warnings, and `git diff --check`.
+The lint command checks required root files, executable scaffold scripts, workspace phase README files, document template coverage, workspace root README placeholders, wiki index coverage in both directions, local Markdown link targets, non-standard workspace directories, phase document naming warnings, ignored local noise warnings, and `git diff --check`.
 
 Wiki index coverage includes nested pages under topic directories and verifies that `wiki/index.md` links point to existing wiki files.
+
+Non-standard workspace directories produce a warning, and when the directory is a recognized variant of a canonical phase or auxiliary directory, the warning suggests the canonical name (for example `tests/` toward `test-cases/`).
+
+## Status And Staleness
+
+Structural lint does not judge whether content is current. Two reporting commands cover that:
+
+```sh
+./scripts/scaffold.sh status
+./scripts/scaffold.sh stale [days]
+```
+
+`status` reads the `**Status:**` and `**Updated:**` fields from every workspace phase document and prints a lifecycle table, so a human or AI agent can see at a glance which topics are unset, in review, approved, or complete.
+
+`stale` reads the `**Updated:**` field (workspace documents) or `updated:` frontmatter (wiki pages) and lists documents older than the threshold. Use it to satisfy the lint workflow concern about "stale wiki pages with old claims" without forcing a hard failure.
 
 ## Review Gates
 
 Do not advance phases silently.
 
+- **raw-input is required** whenever the work originates from a request, ticket, bug, or any external source. Only standalone `discovery` or `context` tasks may omit it.
+- **A simple, low-risk change may go `raw-input -> implementation` directly; anything more complex requires a tech-spec first**, so a human can review direction before the detail of implementation.
 - Full-flow work: `requirements -> tech-spec` requires requirements to be clear enough to implement.
 - Full-flow work: `tech-spec -> implementation` requires tech spec review approval or explicit user instruction.
 - Standalone phases are allowed. A workspace may intentionally stop at discovery, context, requirements, tech-spec, implementation, or review.
-- Direct implementation work is allowed when the task is small, already clear, operational, or explicitly requested by the user.
 - `implementation -> review` requires implementation notes and verification evidence when review is in scope.
 - `review -> done` requires acceptance criteria status when review is in scope.
 
@@ -579,10 +619,10 @@ Choose the lightest workflow that preserves traceability. These are examples, no
 | Task Type | Minimum Path |
 |-----------|--------------|
 | Ambiguous product work | `raw-input -> discovery -> context -> requirements -> tech-spec -> implementation -> review` |
-| Clear feature with known context | `requirements -> tech-spec -> implementation -> review` |
-| Small clear change | `implementation -> review` |
-| Bug with a ticket | `raw-input -> requirements -> implementation -> review` |
-| Operational cleanup | `implementation` |
+| Clear feature with known context | `raw-input -> requirements -> tech-spec -> implementation -> review` |
+| Small clear change | `raw-input -> implementation` |
+| Bug with a ticket | `raw-input -> tech-spec -> implementation -> review` (a simple bug may skip tech-spec) |
+| Operational cleanup | `raw-input -> implementation` |
 | Research only | `discovery -> context` |
 | Standalone investigation | `discovery` |
 | Context capture only | `context` |

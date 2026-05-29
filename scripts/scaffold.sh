@@ -6,6 +6,7 @@ SCAFFOLD_LIB="$SCAFFOLD_ROOT/scripts/lib"
 
 . "$SCAFFOLD_LIB/common.sh"
 . "$SCAFFOLD_LIB/create.sh"
+. "$SCAFFOLD_LIB/report.sh"
 . "$SCAFFOLD_LIB/lint.sh"
 . "$SCAFFOLD_LIB/ingest.sh"
 
@@ -13,6 +14,8 @@ usage() {
   printf 'Usage:\n'
   printf '  %s create <workspace-name> [topic-slug]\n' "$0"
   printf '  %s create-doc <workspace-name> <phase|all> <topic-slug>\n' "$0"
+  printf '  %s status\n' "$0"
+  printf '  %s stale [days]\n' "$0"
   printf '  %s lint\n' "$0"
   printf '  %s ingest\n' "$0"
   printf '\n'
@@ -21,6 +24,8 @@ usage() {
   printf '  %s create user-management create-user-table\n' "$0"
   printf '  %s create-doc user-management requirements create-user-table\n' "$0"
   printf '  %s create-doc user-management all create-user-table\n' "$0"
+  printf '  %s status\n' "$0"
+  printf '  %s stale 30\n' "$0"
   printf '  %s lint\n' "$0"
   printf '  %s ingest\n' "$0"
 }
@@ -34,6 +39,14 @@ case "$command" in
   create-doc)
     shift
     create_document "$@"
+    ;;
+  status)
+    shift
+    report_status "$@"
+    ;;
+  stale)
+    shift
+    report_stale "$@"
     ;;
   lint)
     shift

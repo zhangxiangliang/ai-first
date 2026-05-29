@@ -31,6 +31,8 @@ Use `./scripts/scaffold.sh` for scaffold operations instead of hand-copying temp
 
 - Create a workspace with `./scripts/scaffold.sh create <workspace-name> [topic-slug]`
 - Create phase documents with `./scripts/scaffold.sh create-doc <workspace-name> <phase|all> <topic-slug>`
+- Review lifecycle state with `./scripts/scaffold.sh status`
+- Surface aging documents with `./scripts/scaffold.sh stale [days]`
 - Run structural checks with `./scripts/scaffold.sh lint`
 - Generate the wiki ingest queue with `./scripts/scaffold.sh ingest`
 

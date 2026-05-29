@@ -69,9 +69,9 @@ create_workspace() {
   today="$(date +%F)"
 
   sed \
-    -e "s/{{WORKSPACE_TITLE}}/$title/g" \
-    -e "s/{{UPDATED_DATE}}/$today/g" \
-    -e "s/{{WORKSPACE_PREFIX}}/$prefix/g" \
+    -e "s/{{WORKSPACE_TITLE}}/$(escape_sed_replacement "$title")/g" \
+    -e "s/{{UPDATED_DATE}}/$(escape_sed_replacement "$today")/g" \
+    -e "s/{{WORKSPACE_PREFIX}}/$(escape_sed_replacement "$prefix")/g" \
     "$root_template" > "$target/README.md"
 
   if [ "$topic" != "" ]; then
@@ -119,7 +119,8 @@ create_document() {
   today="$(date +%F)"
 
   if [ "$phase" = "all" ]; then
-    create_documents_for_phases "$target" "$name" "$title" "$prefix" "$topic" "$topic_title" "$today" raw-input discovery context requirements tech-spec implementation review
+    # shellcheck disable=SC2086
+    create_documents_for_phases "$target" "$name" "$title" "$prefix" "$topic" "$topic_title" "$today" $SCAFFOLD_PHASES
   else
     create_documents_for_phases "$target" "$name" "$title" "$prefix" "$topic" "$topic_title" "$today" "$phase"
   fi
@@ -160,14 +161,11 @@ validate_topic_slug() {
 }
 
 validate_document_phase() {
-  case "$1" in
-    all|raw-input|discovery|context|requirements|tech-spec|implementation|review)
-      ;;
-    *)
-      printf 'Phase must be one of: all, raw-input, discovery, context, requirements, tech-spec, implementation, review.\n' >&2
-      exit 1
-      ;;
-  esac
+  if [ "$1" = "all" ] || is_known_phase "$1"; then
+    return 0
+  fi
+  printf 'Phase must be "all" or one of: %s.\n' "$SCAFFOLD_PHASES" >&2
+  exit 1
 }
 
 titleize_slug() {
@@ -202,11 +200,22 @@ create_documents_for_phases() {
   local phase=""
   local destination=""
 
+  local phase_readme=""
+
   for phase in "$@"; do
     destination="$target/$phase/$topic_slug.md"
     if [ ! -d "$target/$phase" ]; then
-      printf 'Workspace phase directory does not exist: %s\n' "$target/$phase" >&2
-      exit 1
+      if is_known_phase "$phase"; then
+        mkdir -p "$target/$phase"
+        phase_readme="$SCAFFOLD_ROOT/templates/workspace/$phase/README.md"
+        if [ -f "$phase_readme" ] && [ ! -f "$target/$phase/README.md" ]; then
+          cp -p "$phase_readme" "$target/$phase/README.md"
+        fi
+        printf 'Created phase directory: %s\n' "$target/$phase"
+      else
+        printf 'Workspace phase directory does not exist: %s\n' "$target/$phase" >&2
+        exit 1
+      fi
     fi
 
     if [ -e "$destination" ]; then
@@ -245,11 +254,11 @@ render_document_template() {
   fi
 
   sed \
-    -e "s/{{WORKSPACE_NAME}}/$workspace_name/g" \
-    -e "s/{{WORKSPACE_TITLE}}/$workspace_title/g" \
-    -e "s/{{WORKSPACE_PREFIX}}/$workspace_prefix/g" \
-    -e "s/{{TOPIC_SLUG}}/$topic_slug/g" \
-    -e "s/{{TOPIC_TITLE}}/$topic_title/g" \
-    -e "s/{{UPDATED_DATE}}/$updated_date/g" \
+    -e "s/{{WORKSPACE_NAME}}/$(escape_sed_replacement "$workspace_name")/g" \
+    -e "s/{{WORKSPACE_TITLE}}/$(escape_sed_replacement "$workspace_title")/g" \
+    -e "s/{{WORKSPACE_PREFIX}}/$(escape_sed_replacement "$workspace_prefix")/g" \
+    -e "s/{{TOPIC_SLUG}}/$(escape_sed_replacement "$topic_slug")/g" \
+    -e "s/{{TOPIC_TITLE}}/$(escape_sed_replacement "$topic_title")/g" \
+    -e "s/{{UPDATED_DATE}}/$(escape_sed_replacement "$updated_date")/g" \
     "$document_template" > "$destination"
 }

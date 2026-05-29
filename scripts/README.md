@@ -65,7 +65,35 @@ Create all standard phase documents for a topic:
 ./scripts/scaffold.sh create-doc user-management all create-user-table
 ```
 
-`create-doc` renders templates from `templates/documents/` and refuses to overwrite existing files.
+The phase argument is one of the canonical lifecycle phases — `raw-input`, `discovery`, `context`, `requirements`, `tech-spec`, `implementation`, `worklog`, `review` — or `all`. `worklog` is a running session log promoted from real project usage; see `WIKI-SCHEMA.md` for its semantics.
+
+`create-doc` renders templates from `templates/documents/` and refuses to overwrite existing files. If the target phase directory does not exist yet, `create-doc` creates it (with its phase `README.md`) for any canonical phase.
+
+## Workspace Status
+
+Show the lifecycle state of every workspace topic document in one table:
+
+```sh
+./scripts/scaffold.sh status
+```
+
+For each phase document it reports the owning workspace, phase, topic slug, `**Status:**`
+value, `**Updated:**` date, and how many days ago it was updated. A `(unset)` status means
+the document still holds the template menu and needs a real status. Rows are grouped by
+workspace and ordered by lifecycle phase.
+
+## Stale Documents
+
+Report documents that have not been updated within a threshold so old claims surface for review:
+
+```sh
+./scripts/scaffold.sh stale        # defaults to 30 days
+./scripts/scaffold.sh stale 14
+```
+
+This scans both `workspaces/` phase documents and `wiki/` pages, reading the `**Updated:**`
+field (workspace docs) or `updated:` frontmatter (wiki pages). Documents older than the
+threshold are listed newest-overdue last. Documents without a parseable date are skipped.
 
 ## Lint Scaffold
 
@@ -75,7 +103,7 @@ Run a structural health check:
 ./scripts/scaffold.sh lint
 ```
 
-This checks required root files, executable scaffold scripts, workspace phase README files, document template coverage, workspace root README placeholders, wiki index coverage in both directions, local Markdown link targets, phase document naming warnings, ignored local noise files, and `git diff --check`.
+This checks required root files, executable scaffold scripts, workspace phase README files, document template coverage, workspace root README placeholders, wiki index coverage in both directions, local Markdown link targets, non-standard workspace directories (with a canonical-name suggestion when the directory is a recognized variant, e.g. `tests/` → `test-cases/`), phase document naming warnings, ignored local noise files, and `git diff --check`.
 
 ## Generate Ingest Queue
 

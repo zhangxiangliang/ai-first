@@ -7,6 +7,7 @@ lint_scaffold() {
   local page=""
   local rel=""
   local junk=""
+  local canonical=""
   local diff_check_output=""
 
   fail() {
@@ -88,7 +89,7 @@ EOF
   warn_phase_slug_mismatch() {
     local workspace_path="$1"
     local workspace_name="$2"
-    local phases=(raw-input discovery context requirements tech-spec implementation review)
+    local phases=($SCAFFOLD_PHASES)
     local left_index=0
     local right_index=0
     local left_phase=""
@@ -198,7 +199,7 @@ EOF
   require_dir "workspaces"
   require_dir "repos"
 
-  for phase in raw-input discovery context requirements tech-spec implementation review; do
+  for phase in $SCAFFOLD_PHASES; do
     require_file "templates/workspace/$phase/README.md"
     require_file "templates/documents/$phase.md"
   done
@@ -217,23 +218,29 @@ EOF
     for phase_dir in "$workspace"/*; do
       [ -d "$phase_dir" ] || continue
       phase="$(basename "$phase_dir")"
-      case "$phase" in
-        raw-input|discovery|context|requirements|tech-spec|implementation|review)
+      if is_accepted_dir "$phase"; then
+        if is_known_phase "$phase"; then
           [ -f "$phase_dir/README.md" ] || fail "Phase missing README: workspaces/$name/$phase"
-          while IFS= read -r doc; do
-            [ -f "$doc" ] || continue
-            base="$(basename "$doc")"
-            [ "$base" = "README.md" ] && continue
-            stem="${base%.*}"
-            if is_generic_name "$stem"; then
-              fail "Workspace document name is too generic: workspaces/$name/$phase/$base"
-            fi
-          done < <(find "$phase_dir" -maxdepth 1 -type f | sort)
-          ;;
-        *)
+        else
+          [ -f "$phase_dir/README.md" ] || warn "Auxiliary directory missing README: workspaces/$name/$phase"
+        fi
+        while IFS= read -r doc; do
+          [ -f "$doc" ] || continue
+          base="$(basename "$doc")"
+          [ "$base" = "README.md" ] && continue
+          stem="${base%.*}"
+          if is_generic_name "$stem"; then
+            fail "Workspace document name is too generic: workspaces/$name/$phase/$base"
+          fi
+        done < <(find "$phase_dir" -maxdepth 1 -type f | sort)
+      else
+        canonical="$(canonical_phase "$phase")"
+        if [ "$canonical" != "$phase" ] && is_accepted_dir "$canonical"; then
+          warn "Non-standard workspace directory: workspaces/$name/$phase (rename to canonical '$canonical')"
+        else
           warn "Non-standard workspace directory: workspaces/$name/$phase"
-          ;;
-      esac
+        fi
+      fi
     done
     warn_phase_slug_mismatch "$workspace" "$name"
   done

@@ -1,7 +1,5 @@
 # AI Workspace Scaffold
 
-[中文说明](README.zh-CN.md)
-
 An AI-first workspace scaffold for PRD-driven development, persistent project knowledge, and LLM-maintained wiki workflows.
 
 This repository is a coordination layer. It helps teams and AI agents preserve project context, move from raw input to implementation, and keep reusable knowledge in a durable wiki.
@@ -29,19 +27,23 @@ workspaces/<workspace-name>/
 The full reference lifecycle is:
 
 ```text
-raw-input -> discovery -> context -> requirements -> tech-spec -> implementation -> review
+raw-input -> discovery -> context -> requirements -> tech-spec -> implementation -> worklog -> review
 ```
 
+`worklog` is an optional running log; use it for long-running or multi-session work.
+
 This is not a mandatory waterfall. Use the smallest path that preserves useful traceability.
+
+Two invariants apply: **raw-input is almost always required** (it records why a change exists; only standalone `discovery` or `context` may omit it), and **tech-spec precedes implementation for anything beyond a simple change** (the cheap human review gate — only simple, low-risk changes go `raw-input -> implementation` directly).
 
 Examples:
 
 | Situation | Suggested Path |
 |-----------|----------------|
-| Clear small change | `implementation` |
-| Bug ticket | `raw-input -> implementation -> review` |
+| Simple, low-risk change | `raw-input -> implementation` |
+| Bug ticket | `raw-input -> tech-spec -> implementation -> review` (simple bug may skip tech-spec) |
 | Ambiguous product work | `raw-input -> discovery -> context -> requirements` |
-| Clear feature | `requirements -> tech-spec -> implementation -> review` |
+| Clear feature | `raw-input -> requirements -> tech-spec -> implementation -> review` |
 | Research only | `discovery` or `discovery -> context` |
 | Durable knowledge update | `context -> wiki promotion` |
 
@@ -106,6 +108,13 @@ Update the generated workspace README, especially:
 - `Handoff`
 - `Next Step`
 
+Review lifecycle state and surface aging documents:
+
+```sh
+./scripts/scaffold.sh status
+./scripts/scaffold.sh stale 30
+```
+
 Run the scaffold health check:
 
 ```sh
@@ -120,7 +129,7 @@ Generate the wiki ingest queue:
 
 ## Documentation
 
-- [Onboarding guide](docs/ai-first-guide.md) / [中文指南](docs/ai-first-guide.zh-CN.md) — practical guide for people and AI agents working in this scaffold
+- [Onboarding guide](docs/ai-first-guide.md) — practical guide for people and AI agents working in this scaffold
 - [LLM-WIKI.md](LLM-WIKI.md) — upstream pattern idea, attributed to the original gist by Andrej Karpathy
 - [WIKI-SCHEMA.md](WIKI-SCHEMA.md) — local operating schema
 - [AGENT-RULES.md](AGENT-RULES.md) — hard rules for AI agents
