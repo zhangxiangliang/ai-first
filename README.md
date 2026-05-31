@@ -4,6 +4,8 @@ An AI-first workspace scaffold for PRD-driven development, persistent project kn
 
 This repository is a coordination layer. It helps teams and AI agents preserve project context, move from raw input to implementation, and keep reusable knowledge in a durable wiki.
 
+This workspace scaffold is based on [zhangxiangliang/ai-workspace-scaffold](https://github.com/zhangxiangliang/ai-workspace-scaffold).
+
 ## Why This Exists
 
 Most AI-assisted development loses context between sessions. Requirements live in chat history, implementation decisions are scattered, and new agents have to rediscover project knowledge from scratch.

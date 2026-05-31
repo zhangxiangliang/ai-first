@@ -2,6 +2,13 @@
 
 > Chronological record of wiki operations.
 
+## [2026-05-28] ingest | Added validated PPT workflow knowledge
+
+- Updated `workflow/ai-first-development.md` with the validated human-in-the-loop pattern from the `ppt` workspace.
+- Added `workflow/project-memory.md` to describe durable project memory across workspace phases and wiki promotion.
+- Added `workflow/html-deck-workflow.md` for HTML presentation artifacts, independent speaker scripts, local assets, and review checks.
+- Updated the wiki index with the new workflow pages.
+
 ## [2026-05-07] scaffold | Expanded Markdown link linting
 
 - Added scaffold lint coverage for local Markdown links across repository documents.

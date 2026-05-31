@@ -19,6 +19,8 @@
 ## AI-First Workflow
 
 - [workflow/ai-first-development.md](workflow/ai-first-development.md) — PRD-centered workspace lifecycle for AI-first development
+- [workflow/project-memory.md](workflow/project-memory.md) — Durable project memory across raw inputs, workspace documents, reviews, and wiki promotion
+- [workflow/html-deck-workflow.md](workflow/html-deck-workflow.md) — HTML presentation workflow using workspace planning and runnable deck artifacts under repos
 - [workflow/llm-wiki-operations.md](workflow/llm-wiki-operations.md) — Ingest, query, and lint operations for maintaining the LLM Wiki
 
 ## Scaffold

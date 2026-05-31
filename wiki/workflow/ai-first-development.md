@@ -1,10 +1,10 @@
 ---
 title: AI-First Development Lifecycle
-source: WIKI-SCHEMA.md
+source: WIKI-SCHEMA.md; workspaces/ppt/*
 see-also: [llm-wiki-operations.md, ../conventions/project-conventions.md, ../scaffold/scaffold.md]
 created: 2026-05-05
-updated: 2026-05-05
-tags: [ai-first, prd, lifecycle, workspaces]
+updated: 2026-05-28
+tags: [ai-first, prd, lifecycle, workspaces, human-in-the-loop]
 ---
 
 # AI-First Development Lifecycle
@@ -96,3 +96,44 @@ CLAIMS-TICKET-001
 Workspace documents own active project state. The wiki owns stable reusable knowledge.
 
 Promote knowledge to the wiki when it becomes reusable across workspaces, such as product concepts, architecture decisions, domain terminology, or recurring constraints.
+
+## Validated Working Pattern
+
+The `ppt` workspace validated this lifecycle for a content-heavy project, not only software implementation. The same pattern worked for turning rough speech-to-text into a finished HTML slide deck and speaker script.
+
+Reusable pattern:
+
+```text
+rough input -> clarification -> requirements -> context correction -> technical plan -> drafted artifacts -> implementation artifact -> review -> wiki
+```
+
+Key observations:
+
+- `raw-input` does not need to be clean. It should preserve the first rough material, including transcription errors, incomplete phrasing, and unclear intent.
+- `discovery` is where the AI turns messy input into questions, topic structure, missing examples, risks, and candidate narratives.
+- `requirements` must convert the conversation into explicit constraints, such as audience, duration, deliverables, tone, in-scope items, and out-of-scope items.
+- `context` is where human corrections become durable: wrong transcriptions, naming fixes, domain vocabulary, sensitive examples, and style preferences.
+- `tech-spec` is still useful for document work. It defines the artifact format, file placement, dependencies, review gates, and what counts as done.
+- `implementation` can be a document phase before real artifact creation. For human-reviewed work, implementation planning and actual execution can be separate steps.
+- `review` should verify both the artifact and the process state: output exists, acceptance criteria pass, documents align, dependencies work, and unresolved risks are named.
+
+## Human Role
+
+When AI can generate most of the implementation, the human role moves earlier and later in the lifecycle.
+
+Earlier:
+
+- state the real problem
+- provide context
+- choose constraints
+- decide what success means
+- correct the AI's interpretation
+
+Later:
+
+- judge whether the output is right
+- catch omissions and style drift
+- decide when to ship
+- turn one-off lessons into reusable wiki knowledge
+
+The value is not competing with AI on generation speed. The value is making the problem clear, deciding what is correct, and turning repeated experience into a system.
