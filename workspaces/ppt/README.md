@@ -6,7 +6,7 @@
 
 **状态：** Complete
 **Owner：** Ben / Codex
-**更新日期：** 2026-05-28
+**更新日期：** 2026-05-31
 
 ## 目标
 
@@ -32,7 +32,7 @@
 
 Complete。
 
-说明：Tech Spec、PPT 大纲、逐字稿、HTML PPT、演讲稿和 Review 均已完成。HTML PPT 位于 `repos/ppt/index.html`，演讲稿位于 `repos/ppt/index.md`。
+说明：Tech Spec、PPT 大纲、逐字稿、HTML PPT、演讲稿、Review 和 PDF 导出均已完成。HTML PPT 位于 `repos/ppt/index.html`，演讲稿位于 `repos/ppt/index.md`，PDF 位于 `repos/ppt/exports/ai-first-talk.pdf`。当前 PDF 导出版已按用户要求去掉两页“张大猪”。
 
 ## 流程模式
 
@@ -52,6 +52,7 @@ Complete。
 - tech-spec：提出 HTML PPT 的实施方案，并已通过用户审核。
 - implementation：已创建状态文档、PPT 大纲和逐字稿；可运行 HTML PPT 与最终演讲稿放在 `repos/ppt/`。
 - review：已完成，记录了验证结果和可选后续优化项。
+- export：已将 HTML PPT 导出为静态 PDF，并补齐导出流程文档和 wiki 记录。
 
 ### 已确认
 
@@ -93,6 +94,11 @@ Complete。
 | `../../repos/ppt/assets/claude-invite-email.png` | Claude 邀请邮件素材。 |
 | `../../repos/ppt/assets/daily-flow-orders.png` | 小生意订单截图素材。 |
 | `review/ai-first-to-ai-100-talk.md` | Review 记录，等待用户视觉审核和试讲计时。 |
+| `raw-input/export-html-deck-to-pdf.md` | PDF 导出请求的原始输入。 |
+| `requirements/export-html-deck-to-pdf.md` | PDF 导出需求和验收标准。 |
+| `tech-spec/export-html-deck-to-pdf.md` | HTML deck 导出 PDF 的技术方案。 |
+| `implementation/export-html-deck-to-pdf.md` | PDF 导出执行、验证和 wiki 记录。 |
+| `../../repos/ppt/exports/ai-first-talk.pdf` | 可分发的静态 PDF 版本，当前 25 页，已去掉两页“张大猪”。 |
 
 ## 决策记录
 
@@ -120,6 +126,9 @@ Complete。
 | 2026-05-28 | 图片无需脱敏。 | 用户确认图片已检查，无需脱敏。 |
 | 2026-05-28 | 增加流程截图展示页。 | 用户补充 raw-input、discovery、requirement、tech-spec、implementation、review、wiki 截图，希望 PPT 有真实图片可看。 |
 | 2026-05-28 | 暂缓提交代码。 | 用户要求等整个流程完成后再提交代码。 |
+| 2026-05-31 | 增加 PDF 导出产物。 | 用户准备正式分享，需要一份可分发、可离线打开的静态文件。 |
+| 2026-05-31 | 将 PDF 导出也纳入工作流文档。 | 用户要求把本次导出补齐为 raw-input、requirements、tech-spec、implementation，并记录到 wiki。 |
+| 2026-05-31 | PDF 导出版移除两页“张大猪”。 | 用户明确要求改的是导出的 PDF；当前 PDF 为 25 页，HTML 源仍保留 27 页版本。 |
 
 ## 开放问题
 
@@ -128,4 +137,4 @@ Complete。
 
 ## 下一步
 
-正式分享前按需做可选优化。
+正式分享前按需做可选优化；如果需要对外发送文件，优先使用 `repos/ppt/exports/ai-first-talk.pdf`。

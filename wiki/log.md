@@ -2,6 +2,12 @@
 
 > Chronological record of wiki operations.
 
+## [2026-05-31] ingest | Added HTML deck PDF export workflow
+
+- Updated `workflow/html-deck-workflow.md` with screenshot-based PDF export guidance for HTML decks.
+- Recorded that HTML remains the interactive source of truth while PDF is the static distribution and backup artifact.
+- Added PDF export checks for page count, 16:9 ratio, hidden controls, and contact sheet review.
+
 ## [2026-05-28] ingest | Added validated PPT workflow knowledge
 
 - Updated `workflow/ai-first-development.md` with the validated human-in-the-loop pattern from the `ppt` workspace.

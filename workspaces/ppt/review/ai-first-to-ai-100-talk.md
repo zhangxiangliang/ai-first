@@ -2,7 +2,7 @@
 
 **状态：** Approved
 **Owner：** Codex
-**更新日期：** 2026-05-28
+**更新日期：** 2026-05-31
 
 ## 阶段范围
 
@@ -39,6 +39,7 @@
 | 用户提供图片已引入。 | Pass | 第 3 页引入 Claude 邀请邮件，第 5 页引入订单截图。 |
 | 关键记忆点加入动效。 | Pass | 张大猪、背锅、裁员三页已加入 CSS 动画。 |
 | 正题页视觉简化。 | Pass | 当前 HTML 为深色简洁风格，正题页主要使用 `simple-slide` 的标题 + 副标题形式。 |
+| PDF 导出版去掉“张大猪”两页。 | Pass | `repos/ppt/exports/ai-first-talk.pdf` 已重新导出为 25 页；HTML 源版本仍保留 27 页。 |
 
 ## Test Results
 
@@ -46,12 +47,12 @@
 |------|------|------|
 | `./scripts/scaffold.sh lint` | Pass | Scaffold lint passed. |
 | 本地 HTTP 访问 | Pass | `curl -I http://localhost:8765/repos/ppt/index.html` 返回 `HTTP/1.0 200 OK`。 |
-| HTML 结构检查 | Pass | 20 slides，0 aside notes，不加载 Reveal notes 插件，存在 `Reveal.initialize`。 |
+| HTML 结构检查 | Pass | 27 slides，0 aside notes，不加载 Reveal notes 插件，存在 `Reveal.initialize`。 |
 | Reveal.js 离线依赖检查 | Pass | HTML 已改为引用 `repos/ppt/vendor/reveal.js/` 下的本地 CSS/JS。 |
 | 图片资源检查 | Pass | `repos/ppt/assets/claude-invite-email.png` 和 `repos/ppt/assets/daily-flow-orders.png` 存在，HTML 引用存在。 |
 | 动效结构检查 | Pass | HTML 包含 `pig-slide`、`blame-slide` 等特殊动效页。 |
 | 简洁版式检查 | Pass | HTML 主要使用 `simple-slide`；正题内容由演讲稿承载。 |
-| 自动截图视觉检查 | Not Tested | 当前未配置 Playwright/browser 自动截图环境；用户已确认流程完成。 |
+| 自动截图视觉检查 | Pass | 已生成 25 页 PDF contact sheet，确认不包含两页“张大猪”。 |
 | 试讲计时 | Pass | 用户确认流程完成；正式分享前仍建议自行试讲一次。 |
 
 ## 发现的问题
@@ -60,6 +61,7 @@
 |------|----------|----------|
 | 图片包含真实业务/邮件信息。 | Accepted | 用户确认图片不用脱敏。 |
 | HTML 与演讲稿页数不完全相同。 | Accepted | 用户后续补充流程截图并要求加入 PPT；当前 27 页，其中 7 页为截图展示页，另有额外“谢谢大家”谢幕页。 |
+| HTML 与 PDF 页数不完全相同。 | Accepted | 用户明确要求改的是导出的 PDF；PDF 去掉两页“张大猪”后为 25 页。 |
 
 ## 后续工作
 
@@ -67,13 +69,14 @@
 - [x] Reveal.js 已下载到本地，可离线演示。
 - [x] 图片无需脱敏，用户已确认。
 - [x] 使用 27 页 HTML 版本，包含用户补充的流程截图展示页。
+- [x] 使用 25 页 PDF 导出版，已去掉两页“张大猪”。
 
 ## Final Decision
 
 **Decision：** Approved
 **Decided By：** Ben / Codex
-**Date：** 2026-05-28
-**Notes：** 用户确认整个流程完成。HTML PPT、独立演讲稿、素材、工作区文档均已对齐；Reveal.js 已离线化；图片无需脱敏；当前保留 27 页 HTML 版本，其中新增 7 页流程截图展示页。提交代码暂缓到用户后续指令。
+**Date：** 2026-05-31
+**Notes：** 用户确认整个流程完成。HTML PPT、独立演讲稿、素材、工作区文档均已对齐；Reveal.js 已离线化；图片无需脱敏；当前保留 27 页 HTML 源版本，其中新增 7 页流程截图展示页。PDF 导出版已按用户要求去掉两页“张大猪”，当前为 25 页。提交代码暂缓到用户后续指令。
 
 ## Wiki Promotion Candidates
 

@@ -1,10 +1,10 @@
 ---
 title: HTML Deck Workflow
-source: workspaces/ppt/tech-spec/ai-first-to-ai-100-talk.md; repos/ppt/*
+source: workspaces/ppt/tech-spec/ai-first-to-ai-100-talk.md; workspaces/ppt/tech-spec/export-html-deck-to-pdf.md; repos/ppt/*
 see-also: [ai-first-development.md, project-memory.md]
 created: 2026-05-28
-updated: 2026-05-28
-tags: [presentations, html, reveal-js, ai-first]
+updated: 2026-05-31
+tags: [presentations, html, reveal-js, ai-first, pdf-export]
 ---
 
 # HTML Deck Workflow
@@ -21,6 +21,7 @@ repos/<deck-name>/
 ├── index.html
 ├── index.md
 ├── assets/
+├── exports/
 └── vendor/
 ```
 
@@ -29,6 +30,7 @@ Use:
 - `index.html` for the runnable slide deck.
 - `index.md` for the independent speaker script.
 - `assets/` for images and media used by the deck.
+- `exports/` for static shareable artifacts, such as PDF.
 - `vendor/` for local dependencies when offline playback matters.
 
 Do not put the final runnable deck under `workspaces/`. Workspaces hold planning and lifecycle documents. `repos/` holds implementation artifacts.
@@ -88,6 +90,38 @@ one slide = one main title + one supporting subtitle
 
 Use more expressive pages only for deliberate memory points, transitions, or visual proof.
 
+## PDF Export Rule
+
+When the source deck is HTML and visual fidelity matters more than editability, prefer a screenshot-based PDF export:
+
+```text
+HTML deck
+  -> local HTTP server
+  -> browser render each slide
+  -> screenshot each 16:9 slide
+  -> assemble screenshots into PDF
+```
+
+This keeps the PDF close to the real on-stage view. It is especially useful when the deck has custom CSS, animations, local images, or browser-specific layout.
+
+Use the PDF as a static backup and distribution file. Keep the HTML deck as the source of truth because PDF export does not preserve animation, click-to-zoom behavior, presenter controls, or other browser interactions.
+
+Before capturing screenshots:
+
+- hide Reveal.js controls and progress UI
+- hide custom fullscreen buttons or presentation-only controls
+- wait for local assets and fonts to render
+- use a stable 16:9 viewport
+- verify the screenshot count matches the Reveal slide count
+
+Store final PDFs under:
+
+```text
+repos/<deck-name>/exports/
+```
+
+Temporary screenshots, contact sheets, and other QA artifacts can live under `outputs/` unless they are part of the final deliverable.
+
 ## Review Checklist
 
 Before delivery:
@@ -99,4 +133,9 @@ Before delivery:
 - Local assets render.
 - Local vendor dependencies load without network access.
 - Important visual effects do not obscure text.
+- Static PDF export exists when a shareable file is needed.
+- PDF page count matches the HTML slide count.
+- PDF pages keep the expected 16:9 ratio.
+- Exported PDF does not include presentation controls.
+- A contact sheet or equivalent visual overview has been reviewed.
 - Workspace docs and actual artifacts agree on final state.
